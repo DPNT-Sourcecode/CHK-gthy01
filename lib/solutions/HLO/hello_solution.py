@@ -7,13 +7,17 @@ class HelloSolution:
          - param[0] = a String containing a name
          - @return = a String containing a message
         """
-        # Could add some handling around if str is empty
-        if not self.valid_name(friend_name):
-            # TODO: Handle valid names
+        if friend_name == "":
+            # Possibly not valid as this would be considered invalid
+            # Assuming, we don't want to accept null value
             raise(ValueError)
 
+        if not self.valid_name(friend_name):
+            return "Hello, World!"
 
         return f"Hello, {friend_name}!"
 
-    def 
+    def valid_name(self, name: str) -> str | None:
+        """ Responsible for managing when the name provided is valid"""
+        return name
 
