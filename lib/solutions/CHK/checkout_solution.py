@@ -46,7 +46,7 @@ class CheckoutSolution:
                 remaining = (pricing["A"][1] % 3) * 50
 
             total_price += offers + remaining
-        
+
         # Duplication probably not needed as we always have constant values on our hashmap
         if pricing["B"]:
             offers = (pricing["B"][1] // 2) * 45
@@ -67,7 +67,6 @@ class CheckoutSolution:
 
 
         return total_price
-
 
 
 
