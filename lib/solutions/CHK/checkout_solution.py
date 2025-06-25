@@ -97,10 +97,10 @@ class CheckoutSolution:
 
             offer += sku_frequency * 40
             offer += remaining * sku_price + (group_2 * 30)
-            breakpoint()
         else:
             offer += sku_frequency * sku_price
 
         return offer
+
 
 
