@@ -33,10 +33,9 @@ class CheckoutSolution:
         # l, r = 0, len(_skus) - 1
 
         for sku in _skus:
-            breakpoint()
-            frequency[sku] = 1 + frequency[sku].get(frequency[sku], 0)
+            frequency[sku] = 1 + frequency.get(sku, 0)
 
-        if ("A", "B") in frequency:
+        if ("A" or "B") in frequency:
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
@@ -46,5 +45,6 @@ class CheckoutSolution:
                 return 45
 
         return -1 # Returning -1 as it's our base case
+
 
 
