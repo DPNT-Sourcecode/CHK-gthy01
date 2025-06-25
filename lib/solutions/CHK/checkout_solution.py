@@ -24,7 +24,7 @@ class CheckoutSolution:
         - @return = an integer representing the total checkout value of the items
         """
         if skus == "":
-            return -1
+            return 0
         # Adapting pricing to take into account frequency
         # This should allow me to calculate the amount of offers fit into the pricing and frequency
         pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
@@ -59,5 +59,6 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
 
 
