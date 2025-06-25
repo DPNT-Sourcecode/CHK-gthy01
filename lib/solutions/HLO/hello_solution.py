@@ -1,6 +1,7 @@
+from nameparser import HumanName
+
 
 class HelloSolution:
-    
     # friend_name = unicode string
     def hello(self, friend_name: str) -> str:
         """
@@ -19,5 +20,8 @@ class HelloSolution:
 
     def valid_name(self, name: str) -> str | None:
         """ Responsible for managing when the name provided is valid"""
+
+        if HumanName(name):
+
         return name
 
