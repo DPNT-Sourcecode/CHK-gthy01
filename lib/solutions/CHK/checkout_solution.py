@@ -77,12 +77,12 @@ class CheckoutSolution:
         offer = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
-        
+
         if sku_frequency > 0:
             # TODO: Need to isolate the offers vs a mix
             # Checking different offers before adding
-            if sku_frequency % deal == 0: 
-                offer += (sku_frequency // deal) * 130
+            if sku_frequency % 3 == 0 and sku_frequency["A"][1] % 5 == 0: 
+                offer += (sku_frequency // 3) * 130
                 offer += (sku_frequency // 5) * 200
             elif sku_frequency % 3 == 0:
                 offer += (sku_frequency // 3) * 130
@@ -99,17 +99,11 @@ class CheckoutSolution:
         sku_price = sku[0]
         sku_frequency = sku[1]
         if sku_frequency > 0:
-            # TODO: Need to isolate the offers vs a mix
-            # Checking different offers before adding
-            if sku_frequency % deal == 0: 
-                offer += (sku_frequency // deal) * 130
-                offer += (sku_frequency // 5) * 200
-            elif sku_frequency % 3 == 0:
-                offer += (sku_frequency // 3) * 130
-            elif sku_frequency % 5 == 0:
-                offer = (sku_frequency // 5) * 200
-            else:
-                remaining = (sku_frequency % 5) * sku_price
+            offers = (sku_frequency // 2) * 45
+
+            if sku_frequency % 2 != 0:
+                remaining = (sku_frequency % 2) * sku_price
+            total_price += offers + remaining
             total_price += offer + remaining
 
         return total_price
@@ -119,17 +113,10 @@ class CheckoutSolution:
         sku_price = sku[0]
         sku_frequency = sku[1]
         if sku_frequency > 0:
-            # TODO: Need to isolate the offers vs a mix
-            # Checking different offers before adding
-            if sku_frequency % deal == 0: 
-                offer += (sku_frequency // deal) * 130
-                offer += (sku_frequency // 5) * 200
-            elif sku_frequency % 3 == 0:
-                offer += (sku_frequency // 3) * 130
-            elif sku_frequency % 5 == 0:
-                offer = (sku_frequency // 5) * 200
-            else:
-                remaining = (sku_frequency % 5) * sku_price
+            offer = ((sku_frequency // 2) * 40) + 30
+
+            if sku_frequency % 2 != 0:
+                remaining = (sku_frequency % 2) * 30
             total_price += offer + remaining
 
         return total_price
