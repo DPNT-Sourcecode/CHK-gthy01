@@ -23,5 +23,9 @@ class CheckoutSolution:
         - param[0] = a string containing the SKUs of all the products in the basket
         - @return = an integer representing the total checkout value of the items
         """
-        raise NotImplementedError()
+        skus.split("")
+        breakpoint()
+
+        return -1 # Returning -1 as it's our base case
+
 
