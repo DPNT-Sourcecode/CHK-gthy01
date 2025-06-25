@@ -45,45 +45,50 @@ class CheckoutSolution:
 
     def offer_check_A(self, sku: tuple[int, int]) -> int:
         total = 0
-        remaining = 0
         price = sku[0]
         freq = sku[1]
         
-        
-        
-        breakpoint()
-        if freq >= 5:
-            group_5 = freq // 5
-            remaining = freq % 5
+        # Apply 5 deal first
+        group_5 = freq // 5
+        freq %= 5
+        total += group_5 * 200
 
-            total += group_5 * 200
-            total += remaining * price
-        elif freq >= 3:
-            group_3 = freq // 3
-            remaining = freq % 3
+        # Apply 3 deal afterwards
+        group_3 = freq // 3
+        freq %= 3
+        total += group_3 * 130
 
-            total += group_3 * 130
-            total += remaining * price
-        else:
-            total += freq * price
+        # Add the remainder to the total pricing
+        total += freq * price
         return total
 
     def offer_check_B(self, sku: tuple[int, int]) -> int:
-        offer = 0
+        total = 0
         remaining = 0
 
-        sku_price = sku[0]
-        sku_frequency = sku[1]
-        if sku_frequency >= 2:
-            group_2 = sku_frequency // 2
-            remaining = sku_frequency % 2
+        price = sku[0]
+        freq = sku[1]
 
-            offer += group_2 * 45
-            offer += remaining * sku_price
-        else:
-            offer += sku_frequency * sku_price
+        # Apply 3 deal afterwards
+        group_3 = freq // 3
+        freq %= 3
+        total += group_3 * 130
 
-        return offer
+        # Add the remainder to the total pricing
+        total += freq * price
+        return total
+
+
+        # if freq >= 2:
+        #     group_2 = freq // 2
+        #     remaining = freq % 2
+
+        #     total += group_2 * 45
+        #     total += remaining * price
+        # else:
+        #     total += freq * price
+
+        # return total
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         offer = 0
@@ -101,3 +106,4 @@ class CheckoutSolution:
             offer += sku_frequency * sku_price
 
         return offer
+
