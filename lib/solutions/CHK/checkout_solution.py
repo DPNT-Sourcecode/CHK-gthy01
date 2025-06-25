@@ -77,11 +77,11 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += freq * price
 
-        # TODO: Remove a value of B for every 2 E's 
-        breakpoint()
-        sku_E[1]
+        group_E = sku_E[1] // 2
+        total -= (group_E * 30)
         return total
 
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
