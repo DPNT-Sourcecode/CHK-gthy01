@@ -44,7 +44,7 @@ class CheckoutSolution:
                 offers += (pricing["A"][1] // 3) * 130
                 offers += (pricing["A"][1] // 5) * 200
             elif pricing["A"][1] % 3 == 0:
-                remaining = (pricing["A"][1] % 3) * 50
+                offers += (pricing["A"][1] // 3) * 130
             elif pricing["A"][1] % 5 == 0:
                 offers = (pricing["A"][1] // 5) * 200
             else:
@@ -66,5 +66,6 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
 
 
