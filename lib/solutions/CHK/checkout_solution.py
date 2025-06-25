@@ -69,7 +69,6 @@ class CheckoutSolution:
         price = sku_B[0]
         freq = sku_B[1]
 
-        for b in range(freq):
         breakpoint()
         # Apply 2 deal afterwards
         group_2 = freq // 2
@@ -89,6 +88,7 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
 
