@@ -38,9 +38,9 @@ class CheckoutSolution:
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
 
-        self.offer_check_A(sku=pricing["A"][1], total_price=total_price)
-        self.offer_check_B(sku=pricing["B"][1], total_price=total_price)
-        self.offer_check_E(sku=pricing["E"][1], total_price=total_price)
+        total_price += self.offer_check_A(sku=pricing["A"], total_price=total_price)
+        total_price += self.offer_check_B(sku=pricing["B"], total_price=total_price)
+        total_price +=self.offer_check_E(sku=pricing["E"], total_price=total_price)
 
         # if pricing["A"][1] > 0:
         #     # TODO: Need to isolate the offers vs a mix
@@ -90,9 +90,8 @@ class CheckoutSolution:
                 offer = (sku_frequency // 5) * 200
             else:
                 remaining = (sku_frequency % 5) * sku_price
-            total_price += offer + remaining
 
-        return total_price
+        return offer + remaining
 
     def offer_check_B(self, sku: tuple[int, int], total_price: int):
         offer = 0
