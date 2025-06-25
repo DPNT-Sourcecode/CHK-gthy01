@@ -25,9 +25,6 @@ class CheckoutSolution:
             return 0
         skus_on_offer = ["A", "B", "E"]
         pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0), "E": (40, 0) }
-        offers = 0
-        remaining = 0
-
         total_price = 0
         for sku in skus:
             if sku not in pricing:
@@ -37,39 +34,16 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
+        breakpoint()
 
-        total_price_A = self.offer_check_A(sku=pricing["A"])
-        total_price_B = self.offer_check_B(sku=pricing["B"])
-        total_price_E =self.offer_check_E(sku=pricing["E"])
+        prices = []
+        if pricing["A"][1] > 0:
+            total_price_A = self.offer_check_A(sku=pricing["A"])
+        if pricing["B"][1] > 0:
+            total_price_B = self.offer_check_B(sku=pricing["B"])
+        if pricing["E"][1] > 0:
+            total_price_E =self.offer_check_E(sku=pricing["E"])
 
-        # if pricing["A"][1] > 0:
-        #     # TODO: Need to isolate the offers vs a mix
-        #     # Checking different offers before adding
-            # if pricing["A"][1] % 3 == 0 and pricing["A"][1] % 5 == 0: 
-            #     offers += (pricing["A"][1] // 3) * 130
-            #     offers += (pricing["A"][1] // 5) * 200
-            # elif pricing["A"][1] % 3 == 0:
-            #     offers += (pricing["A"][1] // 3) * 130
-            # elif pricing["A"][1] % 5 == 0:
-            #     offers = (pricing["A"][1] // 5) * 200
-            # else:
-            #     remaining = (pricing["A"][1] % 5) * 50
-            # total_price += offers + remaining
-
-
-        # if pricing["B"][1] > 0:
-        #     offers = (pricing["B"][1] // 2) * 45
-
-        #     if pricing["B"][1] % 2 != 0:
-        #         remaining = (pricing["B"][1] % 2) * 30
-        #     total_price += offers + remaining
-
-        # if pricing["E"][1] > 0:
-        #     offers = ((pricing["E"][1] // 2) * 40) + 30
-
-        #     if pricing["E"][1] % 2 != 0:
-        #         remaining = (pricing["E"][1] % 2) * 30
-        #     total_price += offers + remaining
         breakpoint()
         return total_price + total_price_A + total_price_B + total_price_E
 
@@ -117,6 +91,7 @@ class CheckoutSolution:
 
         sku_price = sku[0]
         sku_frequency = sku[1]
+        breakpoint()
         if sku_frequency >= 2:
             group_2 = sku_frequency // 2
             remaining = sku_frequency % 2
