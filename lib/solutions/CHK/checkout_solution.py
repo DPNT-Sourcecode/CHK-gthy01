@@ -41,6 +41,7 @@ class CheckoutSolution:
 
         if pricing["A"]:
             breakpoint()
+            if pricing["A"]
             offers = (pricing["A"][1] // 3)
             
             total_price += ()
@@ -50,12 +51,6 @@ class CheckoutSolution:
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
-
-
-
-
-
-
 
 
 
