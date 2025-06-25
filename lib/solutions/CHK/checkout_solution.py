@@ -66,6 +66,7 @@ class CheckoutSolution:
 
     def offer_check_B(self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)) -> int:
         total = 0
+        reg_price 
         price = sku_B[0]
         freq = sku_B[1]
 
@@ -88,6 +89,7 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
 
