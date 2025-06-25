@@ -45,16 +45,16 @@ class CheckoutSolution:
         # if pricing["A"][1] > 0:
         #     # TODO: Need to isolate the offers vs a mix
         #     # Checking different offers before adding
-        #     if pricing["A"][1] % 3 == 0 and pricing["A"][1] % 5 == 0: 
-        #         offers += (pricing["A"][1] // 3) * 130
-        #         offers += (pricing["A"][1] // 5) * 200
-        #     elif pricing["A"][1] % 3 == 0:
-        #         offers += (pricing["A"][1] // 3) * 130
-        #     elif pricing["A"][1] % 5 == 0:
-        #         offers = (pricing["A"][1] // 5) * 200
-        #     else:
-        #         remaining = (pricing["A"][1] % 5) * 50
-        #     total_price += offers + remaining
+            # if pricing["A"][1] % 3 == 0 and pricing["A"][1] % 5 == 0: 
+            #     offers += (pricing["A"][1] // 3) * 130
+            #     offers += (pricing["A"][1] // 5) * 200
+            # elif pricing["A"][1] % 3 == 0:
+            #     offers += (pricing["A"][1] // 3) * 130
+            # elif pricing["A"][1] % 5 == 0:
+            #     offers = (pricing["A"][1] // 5) * 200
+            # else:
+            #     remaining = (pricing["A"][1] % 5) * 50
+            # total_price += offers + remaining
 
 
         # if pricing["B"][1] > 0:
@@ -75,13 +75,13 @@ class CheckoutSolution:
 
     def offer_check_A(self, sku: tuple[int, int], total_price: int):
         offer = 0
+        remaining = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
-
         if sku_frequency > 0:
             # TODO: Need to isolate the offers vs a mix
             # Checking different offers before adding
-            if sku_frequency % 3 == 0 and sku_frequency["A"][1] % 5 == 0: 
+            if sku_frequency % 3 == 0 and sku_frequency % 5 == 0: 
                 offer += (sku_frequency // 3) * 130
                 offer += (sku_frequency // 5) * 200
             elif sku_frequency % 3 == 0:
@@ -95,6 +95,8 @@ class CheckoutSolution:
 
     def offer_check_B(self, sku: tuple[int, int], total_price: int):
         offer = 0
+        remaining = 0
+
         sku_price = sku[0]
         sku_frequency = sku[1]
         if sku_frequency > 0:
@@ -109,6 +111,8 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int], total_price: int):
         offer = 0
+        remaining = 0
+
         sku_price = sku[0]
         sku_frequency = sku[1]
         if sku_frequency > 0:
@@ -119,3 +123,4 @@ class CheckoutSolution:
             total_price += offer + remaining
 
         return total_price
+
