@@ -79,12 +79,16 @@ class CheckoutSolution:
         sku_price = sku[0]
         sku_frequency = sku[1]
         breakpoint()
-        if sku_frequency > 0:
-            # TODO: Need to isolate the offers vs a mix
-            # Checking different offers before adding
+        if sku_frequency >= 5:
+             
            pass 
-            
-        
+        elif sku_frequency >= 3:
+            pass
+        else:
+
+
+
+
             # if sku_frequency % 3 == 0 and sku_frequency % 5 == 0: 
             #     offer += (sku_frequency // 3) * 130
             #     offer += (sku_frequency // 5) * 200
@@ -127,5 +131,6 @@ class CheckoutSolution:
             total_price += offer + remaining
 
         return total_price
+
 
 
