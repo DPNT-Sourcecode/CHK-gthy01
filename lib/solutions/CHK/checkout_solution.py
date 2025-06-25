@@ -11,10 +11,6 @@ class CheckoutSolution:
 # | E    | 40    | 2E get one B free      |
 # +------+-------+------------------------+
 
-
-# Requirements
-
-
     # skus = unicode string
     def checkout(self, skus):
         """
@@ -96,11 +92,12 @@ class CheckoutSolution:
             remaining = sku_frequency % 2
 
             offer += sku_frequency * 40
-            offer += remaining * sku_price + (group_2 * 30)
+            # offer += remaining * sku_price + (group_2 * 30)
         else:
             offer += sku_frequency * sku_price
 
         return offer
+
 
 
 
