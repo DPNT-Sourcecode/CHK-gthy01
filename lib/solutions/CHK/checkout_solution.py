@@ -42,12 +42,12 @@ class CheckoutSolution:
             # Checking different offers before adding
             if pricing["A"][1] % 3 == 0: 
                 offers = (pricing["A"][1] // 3) * 130
-
+            else:
+                remaining = (pricing["A"][1] % 3) * 50
             if pricing["A"][1] % 5 == 0:
                 offers = (pricing["A"][1] // 5) * 200
-
-            if pricing["A"][1] % 3 != 0:
-            remaining = (pricing["A"][1] % 3) * 50
+            else:
+                remaining = (pricing["A"][1] % 5) * 50
             total_price += offers + remaining
 
         if pricing["B"][1] > 0:
@@ -65,3 +65,4 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
