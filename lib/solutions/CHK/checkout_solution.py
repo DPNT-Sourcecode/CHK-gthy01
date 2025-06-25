@@ -51,6 +51,7 @@ class CheckoutSolution:
                 remaining = (pricing["A"][1] % 5) * 50
             total_price += offers + remaining
 
+
         if pricing["B"][1] > 0:
             offers = (pricing["B"][1] // 2) * 45
 
@@ -65,6 +66,11 @@ class CheckoutSolution:
                 remaining = (pricing["E"][1] % 2) * 30
             total_price += offers + remaining
 
+        return total_price
+
+    def offer_check(sku: str, deal: tuple[int, int]):
+        
+        
         return total_price
 
 
