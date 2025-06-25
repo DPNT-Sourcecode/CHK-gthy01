@@ -4,4 +4,4 @@ command_server:
 
 .PHONY: test-challenges
 test-challenges:
-	cmd /C "set PYTHONPATH=challenges && pytest test/unit/challenges"
+	cmd /C "set PYTHONPATH=src && pytest test/unit/challenges"
