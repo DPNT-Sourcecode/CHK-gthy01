@@ -20,8 +20,9 @@ class HelloSolution:
 
     def valid_name(self, name: str) -> str | None:
         """ Responsible for managing when the name provided is valid"""
-
-        if HumanName(name):
-
-        return name
+        
+        
+        if not in:
+            return name
+        return None
 
