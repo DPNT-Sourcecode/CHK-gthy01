@@ -79,9 +79,11 @@ class CheckoutSolution:
 
         group_E = sku_E[1] // 2
         total -= (group_E * 30)
+        breakpoint()
         return total
 
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
