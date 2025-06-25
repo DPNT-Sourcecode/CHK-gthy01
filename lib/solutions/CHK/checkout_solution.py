@@ -35,6 +35,7 @@ class CheckoutSolution:
 
         for sku in _skus:
             if sku not in pricing:
+                breakpoint()
                 return -1 # Returning -1 as it's our base case
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
@@ -43,21 +44,24 @@ class CheckoutSolution:
             # X the offer amount of 150 * how many times pricing is divisible by 3
             # then I need the remainder of the overall total occurances and then I need to add that by 50 
             # then add both values to get total amount
-            offers = (pricing["A"][1] // 3) * 150
+            offers = (pricing["A"][1] // 3) * 130
             remaining = 0
             if pricing["A"][1] % 3 != 0:
                 remaining = (pricing["A"][1] % 3) * 50
+
+            breakpoint()
             total_price += offers + remaining
 
         if "B" in pricing:
             offers = (pricing["B"][1] // 2) * 45
             remaining = 0
-            
+
             if pricing["B"][1] % 2 != 0:
                 remaining = (pricing["B"][1] % 2) * 30
             total_price += offers + remaining
 
         return total_price
+
 
 
 
