@@ -24,7 +24,7 @@ class CheckoutSolution:
         - @return = an integer representing the total checkout value of the items
         """
         _skus = skus.split(", ")
-        pricing = {"A": 50, "B"}
+        pricing = { "A": 50, "B": 30, "C": 20, "D": 15 }
         frequency = {} # sku / frequency
 
 
@@ -48,6 +48,7 @@ class CheckoutSolution:
                 return 45
 
         return -1 # Returning -1 as it's our base case
+
 
 
 
