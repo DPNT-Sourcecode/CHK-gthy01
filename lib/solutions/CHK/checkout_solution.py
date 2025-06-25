@@ -102,15 +102,12 @@ class CheckoutSolution:
         sku_frequency = sku[1]
         if sku_frequency >= 2:
             group_2 = sku_frequency // 2
-            remaining
+            remaining = sku_frequency % 2
 
-
-
-            offers = (sku_frequency // 2) * 45
-
-            if sku_frequency % 2 != 0:
-                remaining = (sku_frequency % 2) * sku_price
-            offer += offer + remaining
+            offer += group_2 * 45
+            offer += remaining * sku_price
+        else:
+            offer += sku_frequency + sku_price
 
         return offer
 
@@ -120,17 +117,12 @@ class CheckoutSolution:
 
         sku_price = sku[0]
         sku_frequency = sku[1]
-        if sku_frequency > 0:
-            offer = ((sku_frequency // 2) * 40) + 30
+        if sku_frequency >= 2:
+            group_2 = sku_frequency // 2
+            remaining = sku_frequency % 2
 
-            if sku_frequency % 2 != 0:
-                remaining = (sku_frequency % 2) * 30
-            total_price += offer + remaining
-
+            offer += group_2 * 30
+            offer += remaining * sku_price
+        else:
+            offer += sku_frequency + sku_price
         return total_price
-
-
-
-
-
-
