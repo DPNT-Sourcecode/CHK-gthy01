@@ -1,21 +1,19 @@
 
 class CheckoutSolution:
 
-    #     Our price table and offers:
-    # +------+-------+----------------+
-    # | Item | Price | Special offers |
-    # +------+-------+----------------+
-    # | A    | 50    | 3A for 130     |
-    # | B    | 30    | 2B for 45      |
-    # | C    | 20    |                |
-    # | D    | 15    |                |
-    # +------+-------+----------------+
+# +------+-------+------------------------+
+# | Item | Price | Special offers         |
+# +------+-------+------------------------+
+# | A    | 50    | 3A for 130, 5A for 200 |
+# | B    | 30    | 2B for 45              |
+# | C    | 20    |                        |
+# | D    | 15    |                        |
+# | E    | 40    | 2E get one B free      |
+# +------+-------+------------------------+
+
 
 # Requirements
-#  - Our goods are priced individually. In addition, some items are multi-priced: buy n of them, and they'll cost you y pounds.
-#  - For example, item A might cost 50 pounds individually, but this week we have a special offer:
-#  - buy three As and they'll cost you 130.
-#  - For any illegal input return -1
+
 
     # skus = unicode string
     def checkout(self, skus):
@@ -25,15 +23,14 @@ class CheckoutSolution:
         """
         if skus == "":
             return 0
-        # Adapting pricing to take into account frequency
-        # This should allow me to calculate the amount of offers fit into the pricing and frequency
-        pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
+        skus_on_offer = ["A", "B", "E"]
+        pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0), "E": (40, 0) }
 
         total_price = 0
         for sku in skus:
             if sku not in pricing:
                 return -1 # Returning -1 as it's our base case
-            if sku not in ["A", "B"]:
+            if sku not in skus_on_offer:
                 total_price += pricing[sku][0]
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
@@ -58,7 +55,11 @@ class CheckoutSolution:
                 remaining = (pricing["B"][1] % 2) * 30
             total_price += offers + remaining
 
+
+        if "E" in pricing:
+            
         return total_price
+
 
 
 
