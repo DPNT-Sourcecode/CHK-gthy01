@@ -78,7 +78,6 @@ class CheckoutSolution:
         remaining = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
-        breakpoint()
         if sku_frequency >= 5:
             group_5 = sku_frequency // 5
             remaining = sku_frequency % 5
@@ -92,8 +91,7 @@ class CheckoutSolution:
             offer += group_3 * 130
             offer += remaining * sku_price
         else:
-            offer += remaining * sku_price
-            breakpoint()
+            offer += sku_frequency * sku_price
         return offer
 
     def offer_check_B(self, sku: tuple[int, int], total_price: int):
@@ -102,15 +100,19 @@ class CheckoutSolution:
 
         sku_price = sku[0]
         sku_frequency = sku[1]
-        if sku_frequency > 0:
+        if sku_frequency >= 2:
+            group_2 = sku_frequency // 2
+            remaining
+
+
+
             offers = (sku_frequency // 2) * 45
 
             if sku_frequency % 2 != 0:
                 remaining = (sku_frequency % 2) * sku_price
-            total_price += offers + remaining
-            total_price += offer + remaining
+            offer += offer + remaining
 
-        return total_price
+        return offer
 
     def offer_check_E(self, sku: tuple[int, int], total_price: int):
         offer = 0
@@ -126,6 +128,7 @@ class CheckoutSolution:
             total_price += offer + remaining
 
         return total_price
+
 
 
 
