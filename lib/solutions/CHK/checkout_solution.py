@@ -36,7 +36,10 @@ class CheckoutSolution:
 
         breakpoint()
 
-        prices = []
+        total_price_A= 0
+        total_price_B= 0
+        total_price_E= 0
+
         if pricing["A"][1] > 0:
             total_price_A = self.offer_check_A(sku=pricing["A"])
         if pricing["B"][1] > 0:
@@ -68,7 +71,7 @@ class CheckoutSolution:
             offer += sku_frequency * sku_price
         return offer
 
-    def offer_check_B(self, sku: tuple[int, int]):
+    def offer_check_B(self, sku: tuple[int, int]) -> int:
         offer = 0
         remaining = 0
 
@@ -104,3 +107,4 @@ class CheckoutSolution:
             breakpoint()
         breakpoint()
         return offer
+
