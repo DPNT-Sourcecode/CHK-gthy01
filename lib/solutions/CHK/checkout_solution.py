@@ -26,11 +26,13 @@ class CheckoutSolution:
         breakpoint()
         _skus = skus.split()
 
-        offer_check = []
+        total_price = 0
+        l, r: int = 0, len(_skus) - 1
         for sku in _skus:
             # Check whether or not skus equate to one another
             
         return -1 # Returning -1 as it's our base case
+
 
 
 
