@@ -11,4 +11,3 @@ class SumSolution:
             raise(ValueError) 
 
         return x + y
-
