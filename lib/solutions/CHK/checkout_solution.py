@@ -98,8 +98,3 @@ class CheckoutSolution:
             offer += sku_frequency * sku_price
 
         return offer
-
-
-
-
-
