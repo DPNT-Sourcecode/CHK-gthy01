@@ -40,11 +40,12 @@ class CheckoutSolution:
         if pricing["A"][1] > 0:
             # TODO: Need to isolate the offers vs a mix
             # Checking different offers before adding
-            if pricing["A"][1] % 3 == 0: 
-                offers = (pricing["A"][1] // 3) * 130
-            else:
+            if pricing["A"][1] % 3 == 0 and pricing["A"][1] % 5 == 0: 
+                offers += (pricing["A"][1] // 3) * 130
+                offers += (pricing["A"][1] // 5) * 200
+            elif pricing["A"][1] % 3 == 0:
                 remaining = (pricing["A"][1] % 3) * 50
-            if pricing["A"][1] % 5 == 0:
+            elif pricing["A"][1] % 5 == 0:
                 offers = (pricing["A"][1] // 5) * 200
             else:
                 remaining = (pricing["A"][1] % 5) * 50
@@ -65,4 +66,5 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
 
