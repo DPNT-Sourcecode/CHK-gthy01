@@ -36,19 +36,20 @@ class CheckoutSolution:
         for sku in _skus:
             if sku not in pricing:
                 return -1 # Returning -1 as it's our base case
-            pricing[sku] = 1 + pricing[sku][1]
+            pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
 
         if pricing["A"]:
-            offer = (pricing["A"] // 3) * 
-            total_price += ()
             breakpoint()
+            offer = (pricing["A"][1] // 3)
+            total_price += ()
 
         if "B" in pricing:
             total_price += (frequency["B"] / 3)
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
+
 
 
 
