@@ -32,11 +32,13 @@ class CheckoutSolution:
         total_price = 0
         # TODO: Revisit pointer later on for potential optimisations
         # l, r = 0, len(_skus) - 1
-
+        
         for sku in _skus:
             if sku not in pricing:
-                breakpoint()
                 return -1 # Returning -1 as it's our base case
+            if sku in ("A" or "B"):
+                total_price += pricing[sku][0]
+
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
 
@@ -49,7 +51,6 @@ class CheckoutSolution:
             if pricing["A"][1] % 3 != 0:
                 remaining = (pricing["A"][1] % 3) * 50
 
-            breakpoint()
             total_price += offers + remaining
 
         if "B" in pricing:
@@ -61,6 +62,7 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
 
 
 
