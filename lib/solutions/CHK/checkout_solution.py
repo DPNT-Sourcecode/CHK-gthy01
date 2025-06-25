@@ -23,10 +23,9 @@ class CheckoutSolution:
         - param[0] = a string containing the SKUs of all the products in the basket
         - @return = an integer representing the total checkout value of the items
         """
-        _skus = skus.split(", ")
+        _skus = skus.split(",")
         pricing = { "A": 50, "B": 30, "C": 20, "D": 15 }
         frequency = {} # sku / frequency
-
 
         total_price = 0
         # TODO: Revisit pointer later on for potential optimisations
@@ -34,13 +33,17 @@ class CheckoutSolution:
 
         for sku in _skus:
             if sku != ("A" or "B"):    
-                
+                pass
             frequency[sku] = 1 + frequency.get(sku, 0)
 
-        if ("A" or "B") in frequency:
+        if "A" in frequency:
+            
+        if "B" in frequency:
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
+
+
             if frequency["A"] == 3:
 
                 return 130
@@ -48,6 +51,7 @@ class CheckoutSolution:
                 return 45
 
         return -1 # Returning -1 as it's our base case
+
 
 
 
