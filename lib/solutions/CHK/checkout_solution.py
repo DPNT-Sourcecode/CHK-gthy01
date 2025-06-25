@@ -23,9 +23,14 @@ class CheckoutSolution:
         - param[0] = a string containing the SKUs of all the products in the basket
         - @return = an integer representing the total checkout value of the items
         """
-        skus.split("")
         breakpoint()
+        _skus = skus.split()
 
+        offer_check = []
+        for sku in _skus:
+            # Check whether or not skus equate to one another
+            
         return -1 # Returning -1 as it's our base case
+
 
 
