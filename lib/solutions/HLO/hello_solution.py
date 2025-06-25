@@ -17,7 +17,6 @@ class HelloSolution:
 
     def valid_name(self, name: str) -> str | None:
         """ Responsible for managing when the name provided is valid"""
-        # rejected_names = ["Mr. X", "Craftsman"]
         accepted_names = ["John", "Mr. X", "Craftsman", "Adam"]
         if name in accepted_names:
             return name
