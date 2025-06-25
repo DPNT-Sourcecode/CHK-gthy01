@@ -64,46 +64,43 @@ class CheckoutSolution:
 
     def offer_check_B(self, sku: tuple[int, int]) -> int:
         total = 0
-        remaining = 0
-
         price = sku[0]
         freq = sku[1]
 
-        # Apply 3 deal afterwards
-        group_3 = freq // 3
-        freq %= 3
-        total += group_3 * 130
+        # Apply 2 deal afterwards
+        group_2 = freq // 2
+        freq %= 2
+        total += group_2 * 45
 
         # Add the remainder to the total pricing
         total += freq * price
         return total
 
 
+    def offer_check_E(self, sku: tuple[int, int]) -> int:
+        total = 0
+        remaining = 0
+
+        price = sku[0]
+        freq = sku[1]
+
+        # Apply 2 deal afterwards
+        group_2 = freq // 2
+        freq %= 2
+        total += group_2 * 40
+        breakpoint()
+        # Add the remainder to the total pricing
+        total += freq * price
+        return total
+
         # if freq >= 2:
         #     group_2 = freq // 2
         #     remaining = freq % 2
 
-        #     total += group_2 * 45
-        #     total += remaining * price
+        #     total += freq * 40
+        #     # offer += remaining * sku_price + (group_2 * 30)
         # else:
         #     total += freq * price
 
         # return total
-
-    def offer_check_E(self, sku: tuple[int, int]) -> int:
-        offer = 0
-        remaining = 0
-
-        sku_price = sku[0]
-        sku_frequency = sku[1]
-        if sku_frequency >= 2:
-            group_2 = sku_frequency // 2
-            remaining = sku_frequency % 2
-
-            offer += sku_frequency * 40
-            # offer += remaining * sku_price + (group_2 * 30)
-        else:
-            offer += sku_frequency * sku_price
-
-        return offer
 
