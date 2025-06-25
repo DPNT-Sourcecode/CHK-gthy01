@@ -35,12 +35,15 @@ class CheckoutSolution:
 
         for sku in _skus:
             if sku in frequency:
-                frequency[sku] += frequency.get(sku, 0)
-            
+                frequency[sku] = frequency.get(sku + 1, 0)
+
+        if ("A", "B") in frequency:
+            # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
+            # e.g. 5 (3 == 130 + 2 == 100) total = 230
+            # Probably want to handle this within the looping?
+            if frequency["A"] == 3:
+                return 130
+            if frequency["B"] == 2:
+                return 45
+
         return -1 # Returning -1 as it's our base case
-
-
-
-
-
-
