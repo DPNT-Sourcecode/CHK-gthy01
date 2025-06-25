@@ -73,20 +73,22 @@ class CheckoutSolution:
 
         return total_price
 
-    def offer_check(self, sku_freq: int, deal: int, deal_amount: int, total_price: int):
+    def offer_check(self, sku: tuple[int, int], deal: int, deal_amount: int, total_price: int):
         offer = 0
-        if sku_freq > 0:
+        sku_price = sku[0]
+        sku_frequency = sku[1]
+        if sku_frequency > 0:
             # TODO: Need to isolate the offers vs a mix
             # Checking different offers before adding
-            if sku_freq % 3 == 0 and sku_freq % 5 == 0: 
-                offer += (sku_freq // 3) * 130
-                offer += (sku_freq // 5) * 200
-            elif sku_freq % 3 == 0:
-                offer += (pricing["A"][1] // 3) * 130
-            elif sku_freq % 5 == 0:
-                offer = (sku_freq // 5) * 200
+            if sku_frequency % deal == 0 and sku_frequency % 5 == 0: 
+                offer += (sku_frequency // 3) * 130
+                offer += (sku_frequency // 5) * 200
+            elif sku_frequency % 3 == 0:
+                offer += (sku_frequency // 3) * 130
+            elif sku_frequency % 5 == 0:
+                offer = (sku_frequency // 5) * 200
             else:
-                remaining = (sku_freq % 5) * 50
+                remaining = (sku_frequency % 5) * sku_price
             total_price += offer + remaining
 
         return total_price
