@@ -40,20 +40,19 @@ class CheckoutSolution:
 
 
         if pricing["A"]:
-            breakpoint()
             # X the offer amount of 150 * how many times pricing is divisible by 3
             # then I need the remainder of the overall total occurances and then I need to add that by 50 
             # then add both values to get total amount
-                
-            offers = (pricing["A"][1] // 3)
-            
-            total_price += ()
+            offers = (pricing["A"][1] // 3) * 150
+            remaining = (pricing["A"][1] % 3) * 50
+            total_price += offers + remaining
 
         if "B" in pricing:
-            total_price += (frequency["B"] / 3)
-            # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
-            # e.g. 5 (3 == 130 + 2 == 100) total = 230
-            # Probably want to handle this within the looping?
+            offers = (pricing["B"][1] // 2) * 45
+            remaining = (pricing["B"][1] % 2) * 30
+            total_price += offers + remaining
+
+        return total_price
 
 
 
