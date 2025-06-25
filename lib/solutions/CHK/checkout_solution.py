@@ -51,10 +51,3 @@ class CheckoutSolution:
 
 
 
-
-
-
-
-
-
-
