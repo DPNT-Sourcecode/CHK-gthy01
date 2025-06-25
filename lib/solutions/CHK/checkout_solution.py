@@ -40,7 +40,7 @@ class CheckoutSolution:
 
         self.offer_check(sku_freq=pricing["A"][1], deal=3, deal_amount=130, total_price=total_price)
         self.offer_check(sku_freq=pricing["B"][1], deal=2, deal_amount=45, total_price=total_price)
-        self.offer_check(sku_freq=pricing["C"][1], deal=3, deal_amount=130, total_price=total_price)
+        self.offer_check(sku_freq=pricing["E"][1], deal=3, deal_amount=130, total_price=total_price)
 
         if pricing["A"][1] > 0:
             # TODO: Need to isolate the offers vs a mix
@@ -73,15 +73,16 @@ class CheckoutSolution:
 
         return total_price
 
-    def offer_check(self, sku: tuple[int, int], deal: int, deal_amount: int, total_price: int):
+    def offer_check_A(self, sku: tuple[int, int], total_price: int):
         offer = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
+        
         if sku_frequency > 0:
             # TODO: Need to isolate the offers vs a mix
             # Checking different offers before adding
-            if sku_frequency % deal == 0 and sku_frequency % 5 == 0: 
-                offer += (sku_frequency // 3) * 130
+            if sku_frequency % deal == 0: 
+                offer += (sku_frequency // deal) * 130
                 offer += (sku_frequency // 5) * 200
             elif sku_frequency % 3 == 0:
                 offer += (sku_frequency // 3) * 130
@@ -92,6 +93,47 @@ class CheckoutSolution:
             total_price += offer + remaining
 
         return total_price
+
+    def offer_check_B(self, sku: tuple[int, int], deal: int, deal_amount: int, total_price: int):
+        offer = 0
+        sku_price = sku[0]
+        sku_frequency = sku[1]
+        if sku_frequency > 0:
+            # TODO: Need to isolate the offers vs a mix
+            # Checking different offers before adding
+            if sku_frequency % deal == 0: 
+                offer += (sku_frequency // deal) * 130
+                offer += (sku_frequency // 5) * 200
+            elif sku_frequency % 3 == 0:
+                offer += (sku_frequency // 3) * 130
+            elif sku_frequency % 5 == 0:
+                offer = (sku_frequency // 5) * 200
+            else:
+                remaining = (sku_frequency % 5) * sku_price
+            total_price += offer + remaining
+
+        return total_price
+
+    def offer_check_E(self, sku: tuple[int, int], deal: int, deal_amount: int, total_price: int):
+        offer = 0
+        sku_price = sku[0]
+        sku_frequency = sku[1]
+        if sku_frequency > 0:
+            # TODO: Need to isolate the offers vs a mix
+            # Checking different offers before adding
+            if sku_frequency % deal == 0: 
+                offer += (sku_frequency // deal) * 130
+                offer += (sku_frequency // 5) * 200
+            elif sku_frequency % 3 == 0:
+                offer += (sku_frequency // 3) * 130
+            elif sku_frequency % 5 == 0:
+                offer = (sku_frequency // 5) * 200
+            else:
+                remaining = (sku_frequency % 5) * sku_price
+            total_price += offer + remaining
+
+        return total_price
+
 
 
 
