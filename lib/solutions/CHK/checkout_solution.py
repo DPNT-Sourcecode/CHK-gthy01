@@ -27,7 +27,7 @@ class CheckoutSolution:
 
         # Adapting pricing to take into account frequency
         # This should allow me to calculate the amount of offers fit into the pricing and frequency
-        pricing = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
+        pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
 
         total_price = 0
         # TODO: Revisit pointer later on for potential optimisations
@@ -36,17 +36,19 @@ class CheckoutSolution:
         for sku in _skus:
             if sku not in pricing:
                 return -1 # Returning -1 as it's our base case
-            pricing[sku] = 1 + pricing.get(pricing[sku][1], 0)
+            pricing[sku] = 1 + pricing[sku][1]
 
-        if "A" in frequency:
-            total_price += (frequency["A"] / 3)
+
+        if pricing["A"]:
+            total_price += (pricing["A"] / 3)
             breakpoint()
 
-        if "B" in frequency:
+        if "B" in pricing:
             total_price += (frequency["B"] / 3)
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
+
 
 
 
