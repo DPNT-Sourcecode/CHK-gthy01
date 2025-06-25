@@ -48,6 +48,7 @@ class CheckoutSolution:
         remaining = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
+        breakpoint()
         if sku_frequency >= 5:
             group_5 = sku_frequency // 5
             remaining = sku_frequency % 5
@@ -97,6 +98,7 @@ class CheckoutSolution:
             offer += sku_frequency * sku_price
 
         return offer
+
 
 
 
