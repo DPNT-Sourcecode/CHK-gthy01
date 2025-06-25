@@ -34,7 +34,7 @@ class CheckoutSolution:
 
         for sku in _skus:
             breakpoint()
-            frequency[sku] = frequency[sku].get(frequency[sku] + 1, 0)
+            frequency[sku] = 1 + frequency[sku].get(frequency[sku], 0)
 
         if ("A", "B") in frequency:
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
@@ -46,4 +46,5 @@ class CheckoutSolution:
                 return 45
 
         return -1 # Returning -1 as it's our base case
+
 
