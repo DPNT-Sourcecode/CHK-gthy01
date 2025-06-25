@@ -30,12 +30,15 @@ class CheckoutSolution:
 
 
         total_price = 0
-        l, r = 0, len(_skus) - 1
+        # TODO: Revisit pointer later on for potential optimisations
+        # l, r = 0, len(_skus) - 1
 
         for sku in _skus:
-            # Check whether or not skus equate to one another
+            if sku in frequency:
+                frequency[sku] += frequency.get(sku, 0)
             
         return -1 # Returning -1 as it's our base case
+
 
 
 
