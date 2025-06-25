@@ -23,14 +23,12 @@ class CheckoutSolution:
         - param[0] = a string containing the SKUs of all the products in the basket
         - @return = an integer representing the total checkout value of the items
         """
-        _skus = skus.split()
-        breakpoint()
         # Adapting pricing to take into account frequency
         # This should allow me to calculate the amount of offers fit into the pricing and frequency
         pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
 
         total_price = 0
-        for sku in _skus:
+        for sku in skus:
             if sku not in pricing:
                 return -1 # Returning -1 as it's our base case
             if sku not in ["A", "B"]:
@@ -59,6 +57,7 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
 
 
 
