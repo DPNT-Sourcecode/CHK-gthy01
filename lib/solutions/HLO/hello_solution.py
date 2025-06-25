@@ -22,4 +22,3 @@ class HelloSolution:
         if name not in rejected_names:
             return name
         return None
-
