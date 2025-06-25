@@ -38,38 +38,38 @@ class CheckoutSolution:
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
 
-        self.offer_check(sku_freq=pricing["A"][1], deal=3, deal_amount=130, total_price=total_price)
-        self.offer_check(sku_freq=pricing["B"][1], deal=2, deal_amount=45, total_price=total_price)
-        self.offer_check(sku_freq=pricing["E"][1], deal=3, deal_amount=130, total_price=total_price)
+        self.offer_check_A(sku=pricing["A"][1], total_price=total_price)
+        self.offer_check_B(sku=pricing["B"][1], total_price=total_price)
+        self.offer_check_E(sku=pricing["E"][1], total_price=total_price)
 
-        if pricing["A"][1] > 0:
-            # TODO: Need to isolate the offers vs a mix
-            # Checking different offers before adding
-            if pricing["A"][1] % 3 == 0 and pricing["A"][1] % 5 == 0: 
-                offers += (pricing["A"][1] // 3) * 130
-                offers += (pricing["A"][1] // 5) * 200
-            elif pricing["A"][1] % 3 == 0:
-                offers += (pricing["A"][1] // 3) * 130
-            elif pricing["A"][1] % 5 == 0:
-                offers = (pricing["A"][1] // 5) * 200
-            else:
-                remaining = (pricing["A"][1] % 5) * 50
-            total_price += offers + remaining
+        # if pricing["A"][1] > 0:
+        #     # TODO: Need to isolate the offers vs a mix
+        #     # Checking different offers before adding
+        #     if pricing["A"][1] % 3 == 0 and pricing["A"][1] % 5 == 0: 
+        #         offers += (pricing["A"][1] // 3) * 130
+        #         offers += (pricing["A"][1] // 5) * 200
+        #     elif pricing["A"][1] % 3 == 0:
+        #         offers += (pricing["A"][1] // 3) * 130
+        #     elif pricing["A"][1] % 5 == 0:
+        #         offers = (pricing["A"][1] // 5) * 200
+        #     else:
+        #         remaining = (pricing["A"][1] % 5) * 50
+        #     total_price += offers + remaining
 
 
-        if pricing["B"][1] > 0:
-            offers = (pricing["B"][1] // 2) * 45
+        # if pricing["B"][1] > 0:
+        #     offers = (pricing["B"][1] // 2) * 45
 
-            if pricing["B"][1] % 2 != 0:
-                remaining = (pricing["B"][1] % 2) * 30
-            total_price += offers + remaining
+        #     if pricing["B"][1] % 2 != 0:
+        #         remaining = (pricing["B"][1] % 2) * 30
+        #     total_price += offers + remaining
 
-        if pricing["E"][1] > 0:
-            offers = ((pricing["E"][1] // 2) * 40) + 30
+        # if pricing["E"][1] > 0:
+        #     offers = ((pricing["E"][1] // 2) * 40) + 30
 
-            if pricing["E"][1] % 2 != 0:
-                remaining = (pricing["E"][1] % 2) * 30
-            total_price += offers + remaining
+        #     if pricing["E"][1] % 2 != 0:
+        #         remaining = (pricing["E"][1] % 2) * 30
+        #     total_price += offers + remaining
 
         return total_price
 
@@ -94,7 +94,7 @@ class CheckoutSolution:
 
         return total_price
 
-    def offer_check_B(self, sku: tuple[int, int], deal: int, deal_amount: int, total_price: int):
+    def offer_check_B(self, sku: tuple[int, int], total_price: int):
         offer = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
@@ -108,7 +108,7 @@ class CheckoutSolution:
 
         return total_price
 
-    def offer_check_E(self, sku: tuple[int, int], deal: int, deal_amount: int, total_price: int):
+    def offer_check_E(self, sku: tuple[int, int], total_price: int):
         offer = 0
         sku_price = sku[0]
         sku_frequency = sku[1]
@@ -120,7 +120,3 @@ class CheckoutSolution:
             total_price += offer + remaining
 
         return total_price
-
-
-
-
