@@ -24,7 +24,7 @@ class CheckoutSolution:
         - @return = an integer representing the total checkout value of the items
         """
         _skus = skus.split(", ")
-
+        pricing = {"A": 50, "B"}
         frequency = {} # sku / frequency
 
 
@@ -33,6 +33,8 @@ class CheckoutSolution:
         # l, r = 0, len(_skus) - 1
 
         for sku in _skus:
+            if sku != ("A" or "B"):    
+                
             frequency[sku] = 1 + frequency.get(sku, 0)
 
         if ("A" or "B") in frequency:
@@ -40,11 +42,13 @@ class CheckoutSolution:
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
             if frequency["A"] == 3:
+
                 return 130
             if frequency["B"] == 2:
                 return 45
 
         return -1 # Returning -1 as it's our base case
+
 
 
 
