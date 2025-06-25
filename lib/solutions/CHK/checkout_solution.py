@@ -25,8 +25,10 @@ class CheckoutSolution:
         """
         _skus = skus.split(",")
 
-        pricing = { "A": 50, "B": 30, "C": 20, "D": 15 }
-        frequency = {} # sku / frequency
+        # Adapting pricing to take into account frequency
+        # This should reduce 
+        pricing = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
+        # frequency = {} # sku / frequency
 
         total_price = 0
         # TODO: Revisit pointer later on for potential optimisations
@@ -48,6 +50,7 @@ class CheckoutSolution:
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
             # e.g. 5 (3 == 130 + 2 == 100) total = 230
             # Probably want to handle this within the looping?
+
 
 
 
