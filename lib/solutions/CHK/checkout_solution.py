@@ -36,7 +36,9 @@ class CheckoutSolution:
 
         if pricing["A"][1] > 0:
             total_price_A = self.offer_check_A(sku=pricing["A"])
-        if pricing["B"][1] > 0:
+        if pricing["B"][1] > 0 and pricing["E"][1]:
+            total_price_B = self.offer_check_B(sku_B=pricing["B"])
+        if pricing["B"][1] > 0 and pricing["E"][1]:
             total_price_B = self.offer_check_B(sku_B=pricing["B"])
         if pricing["E"][1] > 0:
             total_price_E =self.offer_check_E(sku=pricing["E"])
@@ -62,7 +64,7 @@ class CheckoutSolution:
         total += freq * price
         return total
 
-    def offer_check_B(self, sku_B: tuple[int, int], sku_E: tuple[int, int]) -> int:
+    def offer_check_B(self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)) -> int:
         total = 0
         price = sku_B[0]
         freq = sku_B[1]
@@ -76,13 +78,14 @@ class CheckoutSolution:
         total += freq * price
 
         # TODO: Remove a value of B for every 2 E's 
-
-        sku_E
+        breakpoint()
+        sku_E[1]
         return total
 
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
 
