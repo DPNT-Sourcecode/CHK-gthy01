@@ -8,13 +8,12 @@ class HelloSolution:
          - @return = a String containing a message
         """
         # Could add some handling around if str is empty
-        if friend_name == "":
-            # Ideally better to handle this Error more appropriately 
-                # - e.g. custom exceptions and error messaging which then would be asserted
-            # But for this simple test I think it's maybe overkill
+        if not self.valid_name(friend_name):
+            # TODO: Handle valid names
             raise(ValueError)
 
-        # TODO: Handle valid names
-        
-        return f"Hello, {friend_name}"
+
+        return f"Hello, {friend_name}!"
+
+    def 
 
