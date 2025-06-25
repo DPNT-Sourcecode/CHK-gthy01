@@ -30,13 +30,10 @@ class CheckoutSolution:
         pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0) }  
 
         total_price = 0
-        # TODO: Revisit pointer later on for potential optimisations
-        # l, r = 0, len(_skus) - 1
-        
         for sku in _skus:
             if sku not in pricing:
                 return -1 # Returning -1 as it's our base case
-            if sku in ("A" or "B"):
+            if sku not in ["A", "B"]:
                 total_price += pricing[sku][0]
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
@@ -62,6 +59,7 @@ class CheckoutSolution:
             total_price += offers + remaining
 
         return total_price
+
 
 
 
