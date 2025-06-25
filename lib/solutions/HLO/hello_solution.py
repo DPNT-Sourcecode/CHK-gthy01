@@ -16,7 +16,4 @@ class HelloSolution:
             raise(ValueError)
 
 
-        return f"Hello {friend_name}"
-
-
-
+        return f"Hello, {friend_name}"
