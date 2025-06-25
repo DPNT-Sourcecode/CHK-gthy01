@@ -23,8 +23,7 @@ class CheckoutSolution:
         - param[0] = a string containing the SKUs of all the products in the basket
         - @return = an integer representing the total checkout value of the items
         """
-        breakpoint()
-        _skus = skus.split()
+        _skus = skus.split(", ")
 
         frequency = {} # sku / frequency
 
@@ -34,8 +33,8 @@ class CheckoutSolution:
         # l, r = 0, len(_skus) - 1
 
         for sku in _skus:
-            if sku in frequency:
-                frequency[sku] = frequency.get(sku + 1, 0)
+            breakpoint()
+            frequency[sku] = frequency[sku].get(frequency[sku] + 1, 0)
 
         if ("A", "B") in frequency:
             # TODO: Will need to adjust this afterwards with n SKUs which don't meet the offer limit
@@ -47,3 +46,4 @@ class CheckoutSolution:
                 return 45
 
         return -1 # Returning -1 as it's our base case
+
