@@ -34,17 +34,18 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
-        breakpoint()
-        for sku in pricing:
-            if pricing[sku] == "A":
-                # A deal logic
-                pass
-            elif pricing[sku] == "B":
-                pass
-            elif pricing[sku] == "E":
-                pass
-            else:
-                breakpoint()
+        # TODO: Pre-optimisation, 
+        # breakpoint()
+        # for sku_id, value in pricing.items():
+        #     if pricing[sku_id] == "A":
+        #         # A deal logic
+        #         pass
+        #     elif pricing[sku_id] == "B":
+        #         pass
+        #     elif pricing[sku_id] == "E":
+        #         pass
+        #     else:
+        #         total_price += pricing[value][0]
 
 
         total_price_A = 0
@@ -122,5 +123,6 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
