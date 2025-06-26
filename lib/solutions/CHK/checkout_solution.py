@@ -96,5 +96,3 @@ class CheckoutSolution:
         f_count -= f_offer
         total = f_count * price
         return total
-
-
