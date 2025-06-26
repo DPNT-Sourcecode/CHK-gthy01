@@ -1,13 +1,15 @@
 class CheckoutSolution:
-    # +------+-------+------------------------+
-    # | Item | Price | Special offers         |
-    # +------+-------+------------------------+
-    # | A    | 50    | 3A for 130, 5A for 200 |
-    # | B    | 30    | 2B for 45              |
-    # | C    | 20    |                        |
-    # | D    | 15    |                        |
-    # | E    | 40    | 2E get one B free      |
-    # +------+-------+------------------------+
+# +------+-------+------------------------+
+# | Item | Price | Special offers         |
+# +------+-------+------------------------+
+# | A    | 50    | 3A for 130, 5A for 200 |
+# | B    | 30    | 2B for 45              |
+# | C    | 20    |                        |
+# | D    | 15    |                        |
+# | E    | 40    | 2E get one B free      |
+# | F    | 10    | 2F get one F free      |
+# +------+-------+------------------------+
+
 
     # skus = unicode string
     def checkout(self, skus):
@@ -91,24 +93,16 @@ class CheckoutSolution:
 
     
     def offer_check_F(
-        self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
+        self, sku: tuple[int, int]
     ) -> int:
-        b_count = sku_B[1]
-        e_count = sku_E[1]
-
-        e_offer = e_count // 2
-        b_count -= e_offer
+        f_count = sku[1]
+        f_offer = f_count // 2
+        f_count += f_offer
 
         total = 0
-        price = sku_B[0]
+        price = sku[0]
 
-        b_pair_count = b_count // 2
-        leftover_b = b_count % 2
-        total = b_pair_count * 45 + leftover_b * price
+        b_pair_count = f_count // 2
+        leftover_b = f_count % 2
+        total = b_pair_count * 10 + leftover_b * price
         return total
-
-
-
-
-
-
