@@ -72,6 +72,8 @@ class CheckoutSolution:
         b_pair_count =  b_count // 2
         leftover_b = b_count % 2
 
+
+        total = b_pair_count * 45 + leftover_b * price 
         # full_price_B_total = b_count - discount_B_total
         
         breakpoint()
@@ -104,5 +106,6 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
