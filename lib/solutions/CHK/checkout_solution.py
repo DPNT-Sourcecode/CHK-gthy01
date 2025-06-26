@@ -1,15 +1,13 @@
-
 class CheckoutSolution:
-
-# +------+-------+------------------------+
-# | Item | Price | Special offers         |
-# +------+-------+------------------------+
-# | A    | 50    | 3A for 130, 5A for 200 |
-# | B    | 30    | 2B for 45              |
-# | C    | 20    |                        |
-# | D    | 15    |                        |
-# | E    | 40    | 2E get one B free      |
-# +------+-------+------------------------+
+    # +------+-------+------------------------+
+    # | Item | Price | Special offers         |
+    # +------+-------+------------------------+
+    # | A    | 50    | 3A for 130, 5A for 200 |
+    # | B    | 30    | 2B for 45              |
+    # | C    | 20    |                        |
+    # | D    | 15    |                        |
+    # | E    | 40    | 2E get one B free      |
+    # +------+-------+------------------------+
 
     # skus = unicode string
     def checkout(self, skus):
@@ -20,34 +18,42 @@ class CheckoutSolution:
         if skus == "":
             return 0
         skus_on_offer = ["A", "B", "E"]
-        pricing: dict[str, tuple[int, int]] = { "A": (50, 0), "B": (30, 0), "C": (20, 0), "D": (15, 0), "E": (40, 0) }
+        pricing: dict[str, tuple[int, int]] = {
+            "A": (50, 0),
+            "B": (30, 0),
+            "C": (20, 0),
+            "D": (15, 0),
+            "E": (40, 0),
+        }
         total_price = 0
         for sku in skus:
             if sku not in pricing:
-                return -1 # Returning -1 as it's our base case
+                return -1  # Returning -1 as it's our base case
             if sku not in skus_on_offer:
                 total_price += pricing[sku][0]
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
+            if pricing["A"][1] > 0:
+                total_price_A = self.offer_check_A(sku=pricing["A"])
 
-        total_price_A= 0
-        total_price_B= 0
-        total_price_E= 0
+
+        total_price_A = 0
+        total_price_B = 0
+        total_price_E = 0
 
         if pricing["A"][1] > 0:
             total_price_A = self.offer_check_A(sku=pricing["A"])
         if pricing["B"][1] > 0:
             total_price_B = self.offer_check_B(sku_B=pricing["B"], sku_E=pricing["E"])
         if pricing["E"][1] > 0:
-            total_price_E =self.offer_check_E(sku=pricing["E"])
-        breakpoint()
+            total_price_E = self.offer_check_E(sku=pricing["E"])
         return total_price + total_price_A + total_price_B + total_price_E
 
     def offer_check_A(self, sku: tuple[int, int]) -> int:
         total = 0
         price = sku[0]
         freq = sku[1]
-        
+
         # Apply 5 deal first
         group_5 = freq // 5
         freq %= 5
@@ -62,31 +68,29 @@ class CheckoutSolution:
         total += freq * price
         return total
 
-    def offer_check_B(self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)) -> int:
+    def offer_check_B(
+        self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
+    ) -> int:
         total = 0
         price = sku_B[0]
-        
+
         b_count = sku_B[1]
         e_count = sku_E[1]
-        
-        b_pair_count =  b_count // 2
+
+        b_pair_count = b_count // 2
         leftover_b = b_count % 2
 
-
-        total = b_pair_count * 45 + leftover_b * price 
+        total = b_pair_count * 45 + leftover_b * price
         # full_price_B_total = b_count - discount_B_total
-        
-        breakpoint()
-        
-        
+
+        free_b_skus = min(e_count // 2, b_count)
+        total -= free_b_skus * price
+
         # total += discount_B_total * 45
         # total += full_price_B_total * price
 
-        
         # for _ in range(freq_E // 2):
         #     total -=
-        
-
 
         # # Apply 2 deal afterwards
         # group_2 = freq_B // 2
@@ -103,9 +107,9 @@ class CheckoutSolution:
         #     total -= (group_E * 30)
         return total
 
-
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
 
