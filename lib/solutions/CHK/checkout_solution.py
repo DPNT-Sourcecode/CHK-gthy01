@@ -71,8 +71,7 @@ class CheckoutSolution:
     ) -> int:
         b_count = sku_B[1]
         e_count = sku_E[1]
-        # 80 + ((30 * 2) - 1) + 100 + 40 + 30 
-        # TODO: Frontload the E removal of the B's and then calculate the B deal
+
         e_offer = e_count // 2
         b_count -= e_offer
 
@@ -84,29 +83,9 @@ class CheckoutSolution:
         total = b_pair_count * 45 + leftover_b * price
         return total
 
-        # full_price_B_total = b_count - discount_B_total
-        # total += discount_B_total * 45
-        # total += full_price_B_total * price
-
-        # for _ in range(freq_E // 2):
-        #     total -=
-
-        # # Apply 2 deal afterwards
-        # group_2 = freq_B // 2
-        # freq_B %= 2
-        # total += group_2 * 45
-
-        # # Add the remainder to the total pricing
-        # total += freq_B * price
-
-        # group_E = sku_E[1] // 2
-        # if (group_E * 30) >= total:
-        #     total = 0
-        # else:
-        #     total -= (group_E * 30)
-
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
 
