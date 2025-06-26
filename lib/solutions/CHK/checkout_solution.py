@@ -74,6 +74,8 @@ class CheckoutSolution:
         total += discount_B_total * 45
         total += full_price_B_total * price
         
+        # for _ in range(freq_E // 2):
+        #     total -=
         
         breakpoint()
 
@@ -96,5 +98,6 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
