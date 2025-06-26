@@ -19,13 +19,14 @@ class CheckoutSolution:
         """
         if skus == "":
             return 0
-        skus_on_offer = ["A", "B", "E"]
+        skus_on_offer = ["A", "B", "E", "F"]
         pricing: dict[str, tuple[int, int]] = {
             "A": (50, 0),
             "B": (30, 0),
             "C": (20, 0),
             "D": (15, 0),
             "E": (40, 0),
+            "F": (10, 0),
         }
         total_price = 0
         for sku in skus:
@@ -96,13 +97,10 @@ class CheckoutSolution:
         self, sku: tuple[int, int]
     ) -> int:
         f_count = sku[1]
-        f_offer = f_count // 2
-        f_count += f_offer
-
-        total = 0
         price = sku[0]
 
-        b_pair_count = f_count // 2
-        leftover_b = f_count % 2
-        total = b_pair_count * 10 + leftover_b * price
+        f_offer = f_count // 2
+        f_count -= f_offer
+
+        total = f_count * price
         return total
