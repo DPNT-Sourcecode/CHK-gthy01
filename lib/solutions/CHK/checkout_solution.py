@@ -72,6 +72,7 @@ class CheckoutSolution:
         b_count = sku_B[1]
         e_count = sku_E[1]
 
+        # Calculate E offer and remove Bs from total before calculating
         e_offer = e_count // 2
         b_count -= e_offer
 
@@ -83,8 +84,28 @@ class CheckoutSolution:
         total = b_pair_count * 45 + leftover_b * price
         return total
 
+
+
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
+    
+    def offer_check_F(
+        self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
+    ) -> int:
+        b_count = sku_B[1]
+        e_count = sku_E[1]
+
+        e_offer = e_count // 2
+        b_count -= e_offer
+
+        total = 0
+        price = sku_B[0]
+
+        b_pair_count = b_count // 2
+        leftover_b = b_count % 2
+        total = b_pair_count * 45 + leftover_b * price
+        return total
 
 
 
