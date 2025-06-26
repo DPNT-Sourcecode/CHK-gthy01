@@ -34,6 +34,9 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
+        breakpoint()
+
+
         total_price_A = 0
         total_price_B = 0
         total_price_E = 0
@@ -70,6 +73,7 @@ class CheckoutSolution:
     def offer_check_B(
         self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
     ) -> int:
+        # 80 + ((30 * 2) - 1) + 100 + 40 + 30 
         total = 0
         price = sku_B[0]
 
@@ -78,7 +82,7 @@ class CheckoutSolution:
 
         b_pair_count = b_count // 2
         leftover_b = b_count % 2
-
+        breakpoint()
         total = b_pair_count * 45 + leftover_b * price
 
         free_b_skus = min(e_count // 2, b_count)
@@ -108,3 +112,4 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
