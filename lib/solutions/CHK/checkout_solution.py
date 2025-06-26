@@ -68,11 +68,12 @@ class CheckoutSolution:
         freq_B = sku_B[1]
         freq_E = sku_E[1]
         
-        discount_B_total = min(freq_E // 2, freq_B)
+        discount_B_total =  freq_B // 2
         full_price_B_total = freq_B - discount_B_total
         
         total += discount_B_total * 45
         total += full_price_B_total * price
+        
         
         breakpoint()
 
@@ -95,4 +96,5 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
