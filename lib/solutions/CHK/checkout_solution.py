@@ -36,10 +36,8 @@ class CheckoutSolution:
 
         if pricing["A"][1] > 0:
             total_price_A = self.offer_check_A(sku=pricing["A"])
-        if pricing["B"][1] > 0 and pricing["E"][1] > 0:
+        if pricing["B"][1] > 0:
             total_price_B = self.offer_check_B(sku_B=pricing["B"], sku_E=pricing["E"])
-        elif pricing["B"][1] > 0:
-            total_price_B = self.offer_check_B(sku_B=pricing["B"])
         if pricing["E"][1] > 0:
             total_price_E =self.offer_check_E(sku=pricing["E"])
         breakpoint()
@@ -76,7 +74,7 @@ class CheckoutSolution:
         total += discount_B_total * 45
         total += full_price_B_total * price
         
-        # breakpoint()
+        breakpoint()
 
 
         # # Apply 2 deal afterwards
@@ -97,3 +95,4 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
