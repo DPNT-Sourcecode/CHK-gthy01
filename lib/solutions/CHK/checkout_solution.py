@@ -92,8 +92,9 @@ class CheckoutSolution:
         price = sku[0]
 
         f_offer = f_count // 3
-        breakpoint()
+        # breakpoint()
         f_count -= f_offer
         total = f_count * price
         return total
+
 
