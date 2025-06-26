@@ -93,9 +93,10 @@ class CheckoutSolution:
         breakpoint()
 
         f_offer = f_count // 2
-        f_count = f_offer
+        f_count -= f_offer
         total = f_count * price
         return total
+
 
 
 
