@@ -92,7 +92,11 @@ class CheckoutSolution:
         price = sku[0]
 
         f_offer = f_count // 2
-        f_count -= f_offer
+
+        # TODO: Add division based on offer amount
+        # breakpoint()
+        f_count = f_count // f_offer
 
         total = f_count * price
         return total
+
