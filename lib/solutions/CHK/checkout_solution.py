@@ -34,20 +34,6 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
-        # TODO: Pre-optimisation, get GREEN before refactoring 
-        # breakpoint()
-        # for sku_id, value in pricing.items():
-        #     if pricing[sku_id] == "A":
-        #         # A deal logic
-        #         pass
-        #     elif pricing[sku_id] == "B":
-        #         pass
-        #     elif pricing[sku_id] == "E":
-        #         pass
-        #     else:
-        #         total_price += pricing[value][0]
-
-
         total_price_A = 0
         total_price_B = 0
         total_price_E = 0
@@ -87,22 +73,15 @@ class CheckoutSolution:
         e_count = sku_E[1]
         # 80 + ((30 * 2) - 1) + 100 + 40 + 30 
         # TODO: Frontload the E removal of the B's and then calculate the B deal
-        free_b_skus = e_count // 2
-        
-        
+        e_offer = e_count // 2
+        b_count -= e_offer
+
         total = 0
         price = sku_B[0]
 
-        
-
         b_pair_count = b_count // 2
         leftover_b = b_count % 2
-
-        breakpoint()
         total = b_pair_count * 45 + leftover_b * price
-
-        free_b_skus = min(e_count // 2, b_count)
-        total -= free_b_skus * price
         return total
 
         # full_price_B_total = b_count - discount_B_total
@@ -128,6 +107,7 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
 
 
