@@ -65,11 +65,14 @@ class CheckoutSolution:
     def offer_check_B(self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)) -> int:
         total = 0
         price = sku_B[0]
-        freq_B = sku_B[1]
-        freq_E = sku_E[1]
         
-        discount_B_total =  freq_B // 2
-        full_price_B_total = freq_B - discount_B_total
+        b_count = sku_B[1]
+        e_count = sku_E[1]
+        
+        b_pair_count =  b_count // 2
+        leftover_b = b_count % 2
+
+        # full_price_B_total = b_count - discount_B_total
         
         breakpoint()
         
@@ -101,4 +104,5 @@ class CheckoutSolution:
 
     def offer_check_E(self, sku: tuple[int, int]) -> int:
         return sku[1] * sku[0]
+
 
