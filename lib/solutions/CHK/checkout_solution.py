@@ -108,6 +108,8 @@ class CheckoutSolution:
             "Z",
         ]
 
+        combo_offer = ["S", "T", "X", "Y", "Z"]
+
         basket: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
@@ -138,17 +140,18 @@ class CheckoutSolution:
         }
 
         total_price = 0
-        temp_price = 0
+
         for sku in skus:
             if sku not in basket:
                 return -1  # Returning -1 as it's our base case
             if sku not in skus_on_offer:
                 total_price += basket[sku][0]
-            basket[sku] = [basket[sku][0], 1 + basket[sku][1]]
+            # basket[sku] = [basket[sku][0], 1 + basket[sku][1]]
+            basket[sku] += 1
 
         total_price += self.buy_n_amount_and_get_free_skus(basket)
+        total_price += self.apply_combo_offer(basket, combo_offer, 3, 45)
 
-        combo_offer = ["S", "T", "X", "Y", "Z"]
         combo_count = []
         for sku_id, pricing_quantity in basket.items():
             price = pricing_quantity[0]
@@ -159,25 +162,12 @@ class CheckoutSolution:
                     combo_count.append(quantity)
                     continue
                 else:
-                    temp_price += self.offer_price_reduction(sku_id, quantity, price)
+                    total_price += self.offer_price_reduction(sku_id, quantity, price)
 
             if sku_id == "M":
                 total_price += pricing_quantity[0] * pricing_quantity[1]
 
-        group_counts = []
-        for sku_id in combo_offer:
-            sku = basket[sku_id]
-            group_counts.append(sku[1])
-
-        if combo_count:
-            total_price += self.offer_for_sku_give_n_total(
-                skus=sum(combo_count),
-                price=price,
-                offer=(3, 0),
-                discount_amount=(45, 0),
-            )
-
-        return total_price + temp_price
+        return total_price
 
     def buy_n_amount_and_get_free_skus(
         self,
@@ -345,6 +335,7 @@ class CheckoutSolution:
             i += offer_size
         breakpoint()
         return total_price
+
 
 
 
