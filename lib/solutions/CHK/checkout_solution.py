@@ -60,15 +60,14 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
-        # temp_price = 0
         for sku_id, pricing_quantity in pricing.items():
-            # breakpoint()
-            total_price += self.translate_skus_to_offers(
-                sku_id=sku_id,
-                sku_price=pricing_quantity[0],
-                sku_quantity=pricing_quantity[1],
-                pricing=pricing,
-            )
+            if sku_id in skus_on_offer:
+                total_price += self.translate_skus_to_offers(
+                    sku_id=sku_id,
+                    sku_price=pricing_quantity[0],
+                    sku_quantity=pricing_quantity[1],
+                    pricing=pricing,
+                )
 
         # breakpoint()
         # if pricing["A"][1] > 0:
@@ -127,7 +126,6 @@ class CheckoutSolution:
         price = sku[0]
 
         f_offer = f_count // 3
-        # breakpoint()
         f_count -= f_offer
         total = f_count * price
         return total
@@ -144,6 +142,7 @@ class CheckoutSolution:
         if sku_id == "E":
             deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
             total += sku_price * sku_quantity
+            breakpoint()
             pricing["B"][1] -= deducted_sku
 
         if sku_id == "F":
@@ -166,7 +165,7 @@ class CheckoutSolution:
             pricing["U"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
-        breakpoint()
+        # breakpoint()
         total += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
         return total
 
@@ -247,7 +246,6 @@ class CheckoutSolution:
 
         # Add the remainder to the total pricing
         total += skus * price
-        breakpoint()
         return total
 
 # b_count = sku[1]
@@ -264,6 +262,7 @@ class CheckoutSolution:
 # leftover_b = b_count % 2
 # total = b_pair_count * 45 + leftover_b * price
 # return total
+
 
 
 
