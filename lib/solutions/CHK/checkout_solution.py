@@ -59,6 +59,32 @@ class CheckoutSolution:
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
 
+
+        if pricing["E"][1] > 0:
+            deducted_sku = self.offer_for_free_skus(pricing["E"][1], 2)
+            total += s * sku_quantity
+            pricing["B"][1] -= deducted_sku
+
+        if sku_id == "F":
+            deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
+            pricing["F"][1] -= deducted_sku
+            total += sku_price * sku_quantity
+
+        if sku_id == "N":
+            deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
+            pricing["M"][1] -= deducted_sku
+            total += sku_price * sku_quantity
+
+        if sku_id == "R":
+            deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
+            pricing["Q"][1] -= deducted_sku
+            total += sku_price * sku_quantity
+
+        if sku_id == "U":
+            deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
+            pricing["U"][1] -= deducted_sku
+            total += sku_price * sku_quantity
+
         for sku_id, pricing_quantity in pricing.items():
             if sku_id in skus_on_offer:
                 total_price += self.translate_skus_to_offers(
@@ -77,7 +103,6 @@ class CheckoutSolution:
         b_count = sku_B[1]
         e_count = sku_E[1]
 
-        # Calculate E offer and remove Bs from total before calculating
         e_offer = e_count // 2
         b_count -= e_offer
 
@@ -110,30 +135,7 @@ class CheckoutSolution:
     ) -> int:
         total = 0
 
-        if sku_id == "E":
-            deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
-            total += sku_price * sku_quantity
-            pricing["B"][1] -= deducted_sku
-
-        if sku_id == "F":
-            deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
-            pricing["F"][1] -= deducted_sku
-            total += sku_price * sku_quantity
-
-        if sku_id == "N":
-            deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
-            pricing["M"][1] -= deducted_sku
-            total += sku_price * sku_quantity
-
-        if sku_id == "R":
-            deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
-            pricing["Q"][1] -= deducted_sku
-            total += sku_price * sku_quantity
-
-        if sku_id == "U":
-            deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
-            pricing["U"][1] -= deducted_sku
-            total += sku_price * sku_quantity
+        
 
         if sku_id in ["A", "B", "H", "P", "Q", "V"]:
             total += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
@@ -217,5 +219,6 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
