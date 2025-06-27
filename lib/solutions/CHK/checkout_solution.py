@@ -132,6 +132,9 @@ class CheckoutSolution:
     def translate_skus_to_offers(
         self, sku_id: str, sku_quantity: int, sku_price: int
     ) -> int:
+
+
+    def offers_for_sku_give_n_total(self, sku_id: str, sku_quantity: int, sku_price: int):
         if sku_id == "A":
             return self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
@@ -155,7 +158,7 @@ class CheckoutSolution:
                 offer=(5, 10),
                 discount_amount=(45, 80),
             )
-        
+
         if sku_id == "P":
             return self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
@@ -169,7 +172,15 @@ class CheckoutSolution:
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(3, 0),
-                discount_amount=(200, 0),
+                discount_amount=(80, 0),
+            )
+
+        if sku_id == "V":
+            return self.offer_for_sku_give_n_total(
+                skus=sku_quantity,
+                price=sku_price,
+                offer=(2, 3),
+                discount_amount=(90, 130),
             )
 
     def offer_for_sku_give_n_total(
@@ -195,4 +206,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
