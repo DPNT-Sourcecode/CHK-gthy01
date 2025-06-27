@@ -1,36 +1,35 @@
 class CheckoutSolution:
-#  Our price table and offers:
-# +------+-------+------------------------+
-# | Item | Price | Special offers         |
-# +------+-------+------------------------+
-# | A    | 50    | 3A for 130, 5A for 200 |
-# | B    | 30    | 2B for 45              |
-# | C    | 20    |                        |
-# | D    | 15    |                        |
-# | E    | 40    | 2E get one B free      |
-# | F    | 10    | 2F get one F free      |
-# | G    | 20    |                        |
-# | H    | 10    | 5H for 45, 10H for 80  |
-# | I    | 35    |                        |
-# | J    | 60    |                        |
-# | K    | 80    | 2K for 150             |
-# | L    | 90    |                        |
-# | M    | 15    |                        |
-# | N    | 40    | 3N get one M free      |
-# | O    | 10    |                        |
-# | P    | 50    | 5P for 200             |
-# | Q    | 30    | 3Q for 80              |
-# | R    | 50    | 3R get one Q free      |
-# | S    | 30    |                        |
-# | T    | 20    |                        |
-# | U    | 40    | 3U get one U free      |
-# | V    | 50    | 2V for 90, 3V for 130  |
-# | W    | 20    |                        |
-# | X    | 90    |                        |
-# | Y    | 10    |                        |
-# | Z    | 50    |                        |
-# +------+-------+------------------------+
-
+    #  Our price table and offers:
+    # +------+-------+------------------------+
+    # | Item | Price | Special offers         |
+    # +------+-------+------------------------+
+    # | A    | 50    | 3A for 130, 5A for 200 |
+    # | B    | 30    | 2B for 45              |
+    # | C    | 20    |                        |
+    # | D    | 15    |                        |
+    # | E    | 40    | 2E get one B free      |
+    # | F    | 10    | 2F get one F free      |
+    # | G    | 20    |                        |
+    # | H    | 10    | 5H for 45, 10H for 80  |
+    # | I    | 35    |                        |
+    # | J    | 60    |                        |
+    # | K    | 80    | 2K for 150             |
+    # | L    | 90    |                        |
+    # | M    | 15    |                        |
+    # | N    | 40    | 3N get one M free      |
+    # | O    | 10    |                        |
+    # | P    | 50    | 5P for 200             |
+    # | Q    | 30    | 3Q for 80              |
+    # | R    | 50    | 3R get one Q free      |
+    # | S    | 30    |                        |
+    # | T    | 20    |                        |
+    # | U    | 40    | 3U get one U free      |
+    # | V    | 50    | 2V for 90, 3V for 130  |
+    # | W    | 20    |                        |
+    # | X    | 90    |                        |
+    # | Y    | 10    |                        |
+    # | Z    | 50    |                        |
+    # +------+-------+------------------------+
 
     # skus = unicode string
     def checkout(self, skus):
@@ -40,7 +39,7 @@ class CheckoutSolution:
         """
         if skus == "":
             return 0
-        skus_on_offer = ["A", "B", "E", "F"]
+        skus_on_offer = ["A", "B", "E", "F", "H", "K"]
         pricing: dict[str, tuple[int, int]] = {
             "A": (50, 0),
             "B": (30, 0),
@@ -61,9 +60,12 @@ class CheckoutSolution:
         # temp_price = 0
         for sku_id, pricing_quantity in pricing.items():
             # breakpoint()
-            # TODO: Frontload any for n skus give x skus free before total discounts 
-            total_price += self.translate_skus_to_offers(sku_id=sku_id, sku_price=pricing_quantity[0], sku_quantity=pricing_quantity[1])
-
+            # TODO: Frontload any for n skus give x skus free before total discounts
+            total_price += self.translate_skus_to_offers(
+                sku_id=sku_id,
+                sku_price=pricing_quantity[0],
+                sku_quantity=pricing_quantity[1],
+            )
 
         # breakpoint()
         # if pricing["A"][1] > 0:
@@ -127,18 +129,32 @@ class CheckoutSolution:
         total = f_count * price
         return total
 
-    def translate_skus_to_offers(self, sku_id: str, sku_quantity: int, sku_price: int ) -> int:
-        
+    def translate_skus_to_offers(
+        self, sku_id: str, sku_quantity: int, sku_price: int
+    ) -> int:
         if sku_id == "A":
-            total_price += self.offer_for_sku_give_n_total(skus=sku_quantity, price=sku_price ,offer=(3, 5), discount_amount=(130, 200))
+            return self.offer_for_sku_give_n_total(
+                skus=sku_quantity,
+                price=sku_price,
+                offer=(3, 5),
+                discount_amount=(130, 200),
+            )
 
         if sku_id == "B":
-            total_price += self.offer_for_sku_give_n_total(skus=sku_quantity, price=sku_price ,offer=(2, 0), discount_amount=(45, 0))
+            return self.offer_for_sku_give_n_total(
+                skus=sku_quantity,
+                price=sku_price,
+                offer=(2, 0),
+                discount_amount=(45, 0),
+            )
 
-
-        return total_price
-
-    def offer_for_sku_give_n_total(self, skus: int, price: int, offer: tuple[int, int], discount_amount: tuple[int, int]) -> int:
+    def offer_for_sku_give_n_total(
+        self,
+        skus: int,
+        price: int,
+        offer: tuple[int, int],
+        discount_amount: tuple[int, int],
+    ) -> int:
         total = 0
 
         # Apply 5 deal first
@@ -155,6 +171,3 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
-
-
-
