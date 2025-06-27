@@ -57,7 +57,7 @@ class CheckoutSolution:
             if sku not in skus_on_offer:
                 total_price += pricing[sku][0]
 
-            pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
+            pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
 
         for sku_id, pricing_quantity in pricing.items():
             if sku_id in skus_on_offer:
@@ -117,7 +117,6 @@ class CheckoutSolution:
 
         if sku_id == "F":
             deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
-            breakpoint()
             pricing["F"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
@@ -218,4 +217,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
