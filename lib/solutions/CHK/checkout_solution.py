@@ -166,8 +166,8 @@ class CheckoutSolution:
             pricing["U"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
+        breakpoint()
         total += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
-        breakpoint
         return total
 
     def offers_for_skus_give_n_total(
@@ -247,6 +247,7 @@ class CheckoutSolution:
 
         # Add the remainder to the total pricing
         total += skus * price
+        breakpoint()
         return total
 
 # b_count = sku[1]
@@ -263,5 +264,6 @@ class CheckoutSolution:
 # leftover_b = b_count % 2
 # total = b_pair_count * 45 + leftover_b * price
 # return total
+
 
 
