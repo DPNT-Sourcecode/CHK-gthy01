@@ -85,8 +85,13 @@ class CheckoutSolution:
             "P",
             "Q",
             "R",
+            "S",
+            "T",
             "U",
             "V",
+            "X",
+            "Y",
+            "Z"
         ]
 
         pricing: dict[str, list[int, int]] = {
@@ -293,6 +298,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
