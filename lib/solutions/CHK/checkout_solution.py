@@ -34,7 +34,6 @@ class CheckoutSolution:
     # | Z    | 50    |                        |
     # +------+-------+------------------------+
 
-
     # +------+-------+---------------------------------+
     # | Item | Price | Special offers                  |
     # +------+-------+---------------------------------+
@@ -91,10 +90,23 @@ class CheckoutSolution:
             "V",
             "X",
             "Y",
-            "Z"
+            "Z",
         ]
 
-        skus_on_direct_discount = ["A", "B", "H", "K", "P", "Q", "S", "T", "V", "X", "Y", "Z"]
+        skus_on_direct_discount = [
+            "A",
+            "B",
+            "H",
+            "K",
+            "P",
+            "Q",
+            "S",
+            "T",
+            "V",
+            "X",
+            "Y",
+            "Z",
+        ]
 
         basket: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
@@ -136,40 +148,26 @@ class CheckoutSolution:
 
         total_price += self.buy_n_amount_and_get_free_skus(basket)
 
-        
         combo_offer = ["S", "T", "X", "Y", "Z"]
         combo_count = []
-        # Iterate through every SKU ID
-        # Track for when SKU ID is in combo offer
-        # Add SKU ID to tracking list
-        # compare all values within tracking list
         for sku_id, pricing_quantity in basket.items():
             price = pricing_quantity[0]
             quantity = pricing_quantity[1]
 
-            if (
-                sku_id in skus_on_direct_discount
-                and pricing_quantity[1] > 0
-            ):
+            if sku_id in skus_on_direct_discount and pricing_quantity[1] > 0:
                 if sku_id in combo_offer:
                     combo_count.append(quantity)
                     continue
                 else:
-                    temp_price += self.offer_price_reduction(
-                        sku_id, quantity, price
-                    )
+                    temp_price += self.offer_price_reduction(sku_id, quantity, price)
 
             if sku_id == "M":
                 total_price += pricing_quantity[0] * pricing_quantity[1]
-
 
         group_counts = []
         for sku_id in combo_offer:
             sku = basket[sku_id]
             group_counts.append(sku[1])
-
-
-
 
         if combo_count:
             total_price += self.offer_for_sku_give_n_total(
@@ -201,7 +199,7 @@ class CheckoutSolution:
 
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
             basket["F"][1] -= deducted_sku
-            total_price += sku_price *  basket["F"][1]
+            total_price += sku_price * basket["F"][1]
 
         if basket["N"][1] > 0:
             sku_price = basket["N"][0]
@@ -285,7 +283,6 @@ class CheckoutSolution:
             )
             return total
 
-
         if sku_id == "V":
             total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
@@ -322,13 +319,13 @@ class CheckoutSolution:
         total += skus * price
         return total
 
-    def apply_combo_offer( self,
-        basket: dict[str, Any], 
-        combo_skus: list[str], 
+    def apply_combo_offer(
+        self,
+        basket: dict[str, Any],
+        combo_skus: list[str],
         offer_size: int,
-        offer_price: int
+        offer_price: int,
     ) -> int:
-
         combo_skus_in_basket = []
         for sku in combo_skus:
             _, quantity = basket.get(sku, (0, 0))
@@ -337,6 +334,17 @@ class CheckoutSolution:
         combo_skus_in_basket.sort(key=lambda sku: basket[sku][0], reverse=True)
 
         total_price = 0
-        
+        i = 0
+        while i + offer_size <= len(combo_skus_in_basket):
+            group = combo_skus_in_basket[i : i + offer_size]
+            total_price += offer_price
+            breakpoint()
+            for sku in group:
+                basket[sku][1] -= 1
+
+            i += offer_size
+        breakpoint()
+        return total_price
+
 
 
