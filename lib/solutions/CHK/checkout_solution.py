@@ -61,14 +61,21 @@ class CheckoutSolution:
 
 
         if pricing["E"][1] > 0:
+            sku_price = pricing["E"][0]
+            sku_quantity = pricing["E"][1] 
+
             deducted_sku = self.offer_for_free_skus(pricing["E"][1], 2)
-            total += s * sku_quantity
+            total_price += sku_price * sku_quantity
             pricing["B"][1] -= deducted_sku
 
-        if sku_id == "F":
+
+        if pricing["F"][1] > 0:
+            sku_price = pricing["F"][0]
+            sku_quantity = pricing["F"][1] 
+            
             deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
             pricing["F"][1] -= deducted_sku
-            total += sku_price * sku_quantity
+            total_price += sku_price * sku_quantity
 
         if sku_id == "N":
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
@@ -219,6 +226,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
