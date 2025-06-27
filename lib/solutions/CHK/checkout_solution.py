@@ -335,12 +335,3 @@ class CheckoutSolution:
             total_price += basket[sku][0]
             basket[sku][1] -= 1
         return total_price
-
-
-
-
-
-
-
-
-
