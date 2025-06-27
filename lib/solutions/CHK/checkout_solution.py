@@ -234,7 +234,7 @@ class CheckoutSolution:
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(2, 0),
-                discount_amount=(150, 0),
+                discount_amount=(120, 0),
             )
             return total
 
@@ -300,3 +300,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
