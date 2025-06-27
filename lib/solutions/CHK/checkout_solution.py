@@ -157,6 +157,7 @@ class CheckoutSolution:
                 offer=(2, 0),
                 discount_amount=(45, 0),
             )
+            breakpoint()
             return total
         
         if sku_id == "H":
@@ -229,7 +230,9 @@ class CheckoutSolution:
 
         # Add the remainder to the total pricing
         total += skus * price
+        breakpoint()
         return total
+
 
 
 
