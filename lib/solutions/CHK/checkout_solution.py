@@ -89,8 +89,7 @@ class CheckoutSolution:
                     sku_id, sku_quantity, sku_price
                 )
             
-            if sku_id not in skus_on_offer:
-                breakpoint()
+            if sku_id not in skus_on_offer and pricing_quantity[1] > 0:
                 total_price += pricing_quantity[0]
 
         return total_price
@@ -136,7 +135,6 @@ class CheckoutSolution:
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
             pricing["U"][1] -= deducted_sku
             total_price += sku_price * pricing["U"][1]
-        breakpoint()
         return total_price
 
     def offer_price_reduction(
@@ -232,6 +230,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
