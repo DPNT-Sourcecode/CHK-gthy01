@@ -58,15 +58,15 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
-        temp_price = 0
+        # temp_price = 0
         for sku_id, pricing_quantity in pricing.items():
-            breakpoint()
+            # breakpoint()
             if sku_id == "A":
-                temp_price += self.offer_for_sku_give_n_total(sku_quantity=pricing_quantity[1], offer_quantity=(3, 5), discount_amount=(130, 200))
+                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], offer=(3, 5), discount_amount=(130, 200))
 
         # breakpoint()
-        if pricing["A"][1] > 0:
-            total_price += self.offer_check_A(sku=pricing["A"])
+        # if pricing["A"][1] > 0:
+        #     total_price += self.offer_check_A(sku=pricing["A"])
         if pricing["B"][1] > 0:
             total_price += self.offer_check_B(sku_B=pricing["B"], sku_E=pricing["E"])
         if pricing["E"][1] > 0:
@@ -76,24 +76,24 @@ class CheckoutSolution:
 
         return total_price
 
-    def offer_check_A(self, sku: tuple[int, int]) -> int:
-        total = 0
-        price = sku[0]
-        freq = sku[1]
+    # def offer_check_A(self, sku: tuple[int, int]) -> int:
+    #     total = 0
+    #     price = sku[0]
+    #     freq = sku[1]
 
-        # Apply 5 deal first
-        group_5 = freq // 5
-        freq %= 5
-        total += group_5 * 200
+    #     # Apply 5 deal first
+    #     group_5 = freq // 5
+    #     freq %= 5
+    #     total += group_5 * 200
 
-        # Apply 3 deal afterwards
-        group_3 = freq // 3
-        freq %= 3
-        total += group_3 * 130
+    #     # Apply 3 deal afterwards
+    #     group_3 = freq // 3
+    #     freq %= 3
+    #     total += group_3 * 130
 
-        # Add the remainder to the total pricing
-        total += freq * price
-        return total
+    #     # Add the remainder to the total pricing
+    #     total += freq * price
+    #     return total
 
     def offer_check_B(
         self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
@@ -127,23 +127,19 @@ class CheckoutSolution:
         return total
 
 
-    def offer_for_sku_give_n_total(self, sku_quantity: int, sku_price: int, offer_quantity: tuple[int, int], discount_amount: tuple[int, int]) -> int:
+    def offer_for_sku_give_n_total(self, skus: int, price: int, offer: tuple[int, int], discount_amount: tuple[int, int]) -> int:
         total = 0
-        # price = sku[0]
-        # freq = sku[1]
 
         # Apply 5 deal first
-        group_5 = sku_quantity // offer_quantity[1]
-        sku_quantity %= offer_quantity[1]
-        total += group_5 * 200
+        group_5 = skus // offer[1]
+        skus %= offer[1]
+        total += group_5 * discount_amount[1]
 
         # Apply 3 deal afterwards
-        group_3 = sku_quantity // offer_quantity[0]
-        sku_quantity %= 3
-        total += group_3 * 130
+        group_3 = skus // offer[0]
+        skus %= offer[0]
+        total += group_3 * discount_amount[0]
 
         # Add the remainder to the total pricing
-        total += sku_quantity * sku_price
+        total += skus * price
         return total
-
-        return 0
