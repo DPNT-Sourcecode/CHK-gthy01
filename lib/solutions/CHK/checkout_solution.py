@@ -34,6 +34,38 @@ class CheckoutSolution:
     # | Z    | 50    |                        |
     # +------+-------+------------------------+
 
+
+    # +------+-------+---------------------------------+
+    # | Item | Price | Special offers                  |
+    # +------+-------+---------------------------------+
+    # | A    | 50    | 3A for 130, 5A for 200          | x
+    # | B    | 30    | 2B for 45                       | x
+    # | C    | 20    |                                 |
+    # | D    | 15    |                                 |
+    # | E    | 40    | 2E get one B free               | x
+    # | F    | 10    | 2F get one F free               | x
+    # | G    | 20    |                                 |
+    # | H    | 10    | 5H for 45, 10H for 80           | x
+    # | I    | 35    |                                 |
+    # | J    | 60    |                                 |
+    # | K    | 70    | 2K for 120                      | x
+    # | L    | 90    |                                 |
+    # | M    | 15    |                                 |
+    # | N    | 40    | 3N get one M free               | x
+    # | O    | 10    |                                 |
+    # | P    | 50    | 5P for 200                      | x
+    # | Q    | 30    | 3Q for 80                       | x
+    # | R    | 50    | 3R get one Q free               |
+    # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | U    | 40    | 3U get one U free               |
+    # | V    | 50    | 2V for 90, 3V for 130           |
+    # | W    | 20    |                                 |
+    # | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # +------+-------+---------------------------------+
+
     def checkout(self, skus):
         """
         - param[0] = a string containing the SKUs of all the products in the basket
@@ -266,3 +298,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
