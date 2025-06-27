@@ -105,7 +105,6 @@ class CheckoutSolution:
         for sku in skus:
             if sku not in pricing:
                 return -1  # Returning -1 as it's our base case
-            # Cause of issue being pre-processing M
             if sku not in skus_on_offer:
                 total_price += pricing[sku][0]
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
@@ -122,6 +121,9 @@ class CheckoutSolution:
                 temp_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
+
+            if sku_id == "M":
+                total_price += pricing_quantity[0] * pricing_quantity[1]
 
         return total_price + temp_price
 
@@ -261,4 +263,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
