@@ -322,12 +322,21 @@ class CheckoutSolution:
         total += skus * price
         return total
 
-    def apply_combo_offer(
+    def apply_combo_offer( self,
         basket: dict[str, Any], 
         combo_skus: list[str], 
-        offer_size: int
+        offer_size: int,
         offer_price: int
     ) -> int:
 
-        combo_skus_
+        combo_skus_in_basket = []
+        for sku in combo_skus:
+            _, quantity = basket.get(sku, (0, 0))
+            combo_skus_in_basket.extend([sku] * quantity)
+
+        combo_skus_in_basket.sort(key=lambda sku: basket[sku][0], reverse=True)
+
+        total_price = 0
+        
+
 
