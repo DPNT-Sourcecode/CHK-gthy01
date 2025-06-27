@@ -42,6 +42,7 @@ class CheckoutSolution:
         if skus == "":
             return 0
         skus_on_offer = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
+        skus_without_offer = ["C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y"]
         pricing: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
@@ -90,9 +91,9 @@ class CheckoutSolution:
                     sku_id, sku_quantity, sku_price
                 )
 
-            if sku_id not in skus_on_offer and pricing_quantity[1] > 0:
+            if sku_id in skus_without_offer and pricing_quantity[1] > 0:
                 temp_price += pricing_quantity[0]
-        breakpoint()
+        # breakpoint()
         return total_price + temp_price
 
     def buy_n_amount_and_get_free_skus(
@@ -231,6 +232,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
