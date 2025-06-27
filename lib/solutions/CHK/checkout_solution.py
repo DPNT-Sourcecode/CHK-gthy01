@@ -151,11 +151,13 @@ class CheckoutSolution:
                 total_price += pricing_quantity[0] * pricing_quantity[1]
 
 
-        SKU_S = pricing["S"][1]
-        SKU_T = pricing["T"][1]
-        SKU_S = pricing["S"][1]
-        SKU_S = pricing["S"][1]
-        if sku_id in ["S", "T", "X", "Y", "Z"]:
+        sku_S = pricing["S"][1]
+        sku_T = pricing["T"][1]
+        sku_X = pricing["X"][1]
+        sku_Y = pricing["Y"][1]
+        sku_Z = pricing["Z"][1]
+
+        if :
             total_price += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
@@ -305,5 +307,6 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
