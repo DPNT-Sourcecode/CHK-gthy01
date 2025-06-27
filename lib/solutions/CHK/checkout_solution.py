@@ -72,6 +72,7 @@ class CheckoutSolution:
         }
 
         total_price = 0
+        temp_price = 0
         for sku in skus:
             if sku not in pricing:
                 return -1  # Returning -1 as it's our base case
@@ -90,9 +91,9 @@ class CheckoutSolution:
                 )
 
             if sku_id not in skus_on_offer and pricing_quantity[1] > 0:
-                total_price += pricing_quantity[0]
+                temp_price += pricing_quantity[0]
         breakpoint()
-        return total_price
+        return total_price + temp_price
 
     def buy_n_amount_and_get_free_skus(
         self,
@@ -157,7 +158,6 @@ class CheckoutSolution:
                 offer=(2, 0),
                 discount_amount=(45, 0),
             )
-            breakpoint()
             return total
         
         if sku_id == "H":
@@ -230,8 +230,8 @@ class CheckoutSolution:
 
         # Add the remainder to the total pricing
         total += skus * price
-        breakpoint()
         return total
+
 
 
 
