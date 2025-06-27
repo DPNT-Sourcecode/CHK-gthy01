@@ -138,6 +138,11 @@ class CheckoutSolution:
 
 
         combo_offer = ["S", "T", "X", "Y", "Z"]
+        combo_count = []
+        # Iterate through every SKU ID
+        # Track for when SKU ID is in combo offer
+        # Add SKU ID to tracking list
+        # compare all values within tracking list
         for sku_id, pricing_quantity in basket.items():
             price = pricing_quantity[0]
             quantity = pricing_quantity[1]
@@ -147,6 +152,7 @@ class CheckoutSolution:
                 and pricing_quantity[1] > 0
             ):
                 if sku_id in combo_offer:
+                    combo_count.append(quantity)
                     if pricing_quantity[1] == 3:
                         total_price += self.offer_for_sku_give_n_total(
                         skus=quantity,
@@ -154,7 +160,7 @@ class CheckoutSolution:
                         offer=(3, 0),
                         discount_amount=(45, 0),
                     )
-                    if pquantity +
+                    continue
                 else:
                     temp_price += self.offer_price_reduction(
                         sku_id, quantity, price
@@ -315,6 +321,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
