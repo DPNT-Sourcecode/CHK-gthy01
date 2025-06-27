@@ -153,13 +153,6 @@ class CheckoutSolution:
             ):
                 if sku_id in combo_offer:
                     combo_count.append(quantity)
-                    if pricing_quantity[1] == 3:
-                        total_price += self.offer_for_sku_give_n_total(
-                        skus=quantity,
-                        price=price,
-                        offer=(3, 0),
-                        discount_amount=(45, 0),
-                    )
                     continue
                 else:
                     temp_price += self.offer_price_reduction(
@@ -176,8 +169,13 @@ class CheckoutSolution:
         sku_Y = basket["Y"][1]
         sku_Z = basket["Z"][1]
 
-        if :
-           
+        if combo_count:
+            total_price += self.offer_for_sku_give_n_total(
+                skus=sum(combo_count),
+                price=price,
+                offer=(3, 0),
+                discount_amount=(45, 0),
+            )
 
         return total_price + temp_price
 
@@ -321,9 +319,3 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
-
-
-
-
-
-
