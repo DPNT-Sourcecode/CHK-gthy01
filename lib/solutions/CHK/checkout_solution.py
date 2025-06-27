@@ -106,7 +106,7 @@ class CheckoutSolution:
         sku_id: str,
         sku_quantity: int,
         sku_price: int,
-        pricing: dict[str, tuple[int, int]],
+        pricing: dict[str, list[int, int]],
     ) -> int:
         total = 0
 
@@ -117,6 +117,7 @@ class CheckoutSolution:
 
         if sku_id == "F":
             deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
+            breakpoint()
             pricing["F"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
@@ -217,3 +218,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
