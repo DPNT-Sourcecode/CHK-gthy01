@@ -41,8 +41,36 @@ class CheckoutSolution:
         """
         if skus == "":
             return 0
-        skus_on_offer = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
-        skus_without_offer = ["C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y"]
+        skus_on_offer = [
+            "A",
+            "B",
+            "E",
+            "F",
+            "H",
+            "K",
+            "N",
+            "M",
+            "P",
+            "Q",
+            "R",
+            "U",
+            "V",
+        ]
+        skus_without_offer = [
+            "C",
+            "D",
+            "G",
+            "I",
+            "J",
+            "L",
+            "M",
+            "O",
+            "S",
+            "T",
+            "W",
+            "X",
+            "Y",
+        ]
         pricing: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
@@ -83,7 +111,7 @@ class CheckoutSolution:
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
 
         total_price += self.buy_n_amount_and_get_free_skus(pricing)
-        
+
         for sku_id, pricing_quantity in pricing.items():
             if (
                 sku_id in ["A", "B", "H", "K", "P", "Q", "V"]
@@ -94,7 +122,7 @@ class CheckoutSolution:
                 temp_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
-            
+
         return total_price + temp_price
 
     def buy_n_amount_and_get_free_skus(
@@ -123,7 +151,7 @@ class CheckoutSolution:
             sku_quantity = pricing["N"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
             pricing["M"][1] -= deducted_sku
-            total_price += (sku_price * sku_quantity)
+            total_price += sku_price * sku_quantity
 
         if pricing["R"][1] > 0:
             sku_price = pricing["R"][0]
@@ -161,7 +189,7 @@ class CheckoutSolution:
                 discount_amount=(45, 0),
             )
             return total
-        
+
         if sku_id == "H":
             total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
@@ -233,3 +261,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
