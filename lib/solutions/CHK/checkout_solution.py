@@ -72,6 +72,7 @@ class CheckoutSolution:
         }
 
         total_price = 0
+        breakpoint()
         for sku in skus:
             if sku not in pricing:
                 return -1  # Returning -1 as it's our base case
@@ -91,6 +92,7 @@ class CheckoutSolution:
                 )
 
             if sku_id not in skus_on_offer and pricing_quantity[1] > 0:
+                breakpoint()
                 total_price += pricing_quantity[0]
 
         return total_price
