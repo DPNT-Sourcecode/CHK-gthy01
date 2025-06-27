@@ -200,21 +200,26 @@ class CheckoutSolution:
     ) -> int:
         # TODO: Build out inputs and pass down the actual individual dict
         total = 0
-        
+
         sku_1 = skus[sku_ids[0]]
         sku_1_price = sku_1[0]
         sku_1_count = sku_1[1]
-        
-        
+
+        sku_groups = sku_1_count // offer
+        sku_2_count -= sku
+
+
         sku_2 = skus[sku_ids[1]]
         sku_2_price = sku_2[0]
         sku_2_count = sku_2[1]
-        
 
 
         total += sku_1_price * sku_1_count
-        breakpoint()
+
+        # Maybe we return a tuple of total E (or other SKUS) 
+        # and SKU X (B) to be removed
         return total
+    
         # b_count = sku[1]
         # e_count = sku_E[1]
 
@@ -254,6 +259,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
