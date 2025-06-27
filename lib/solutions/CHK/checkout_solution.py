@@ -81,6 +81,7 @@ class CheckoutSolution:
         breakpoint()
 
         total_price += self.buy_n_amount_and_get_free_skus(pricing)
+        
         breakpoint()
         for sku_id, pricing_quantity in pricing.items():
             if (
@@ -89,11 +90,12 @@ class CheckoutSolution:
             ):
                 sku_price = pricing_quantity[0]
                 sku_quantity = pricing_quantity[1]
-                total_price += self.offer_price_reduction(
+                temp_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
             if sku_id in skus_without_offer and pricing_quantity[1] > 0:
-                temp_price += pricing_quantity[0]
+                total_price += pricing_quantity[0]
+        breakpoint()
         return total_price + temp_price
 
     def buy_n_amount_and_get_free_skus(
@@ -232,5 +234,6 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
