@@ -91,6 +91,7 @@ class CheckoutSolution:
                 total_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
+                breakpoint()
         breakpoint()
         return total_price
 
@@ -141,61 +142,69 @@ class CheckoutSolution:
     def offer_price_reduction(
         self, sku_id: str, sku_quantity: int, sku_price: int
     ) -> int:
+        total = 0
         if sku_id == "A":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(3, 5),
                 discount_amount=(130, 200),
             )
+            return total
 
         if sku_id == "B":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(2, 0),
                 discount_amount=(45, 0),
             )
-
+            return total
+        
         if sku_id == "H":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(5, 10),
                 discount_amount=(45, 80),
             )
+            return total
 
         if sku_id == "K":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(2, 0),
                 discount_amount=(150, 0),
             )
+            return total
 
         if sku_id == "P":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(5, 0),
                 discount_amount=(200, 0),
             )
+            return total
 
         if sku_id == "Q":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(3, 0),
                 discount_amount=(80, 0),
             )
+            return total
 
         if sku_id == "V":
-            return self.offer_for_sku_give_n_total(
+            total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
                 price=sku_price,
                 offer=(2, 3),
                 discount_amount=(90, 130),
             )
+            return total
 
     def offer_for_free_skus(self, sku_count, offer: int) -> int:
         return sku_count // offer
@@ -223,6 +232,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
