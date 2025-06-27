@@ -160,6 +160,14 @@ class CheckoutSolution:
                 discount_amount=(45, 80),
             )
 
+        if sku_id == "H":
+            return self.offer_for_sku_give_n_total(
+                skus=sku_quantity,
+                price=sku_price,
+                offer=(2, 0),
+                discount_amount=(150, 0),
+            )
+
         if sku_id == "P":
             return self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
@@ -210,6 +218,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
