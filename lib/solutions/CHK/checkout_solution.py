@@ -136,7 +136,7 @@ class CheckoutSolution:
 
         total_price += self.buy_n_amount_and_get_free_skus(basket)
 
-
+        
         combo_offer = ["S", "T", "X", "Y", "Z"]
         combo_count = []
         # Iterate through every SKU ID
@@ -312,4 +312,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
