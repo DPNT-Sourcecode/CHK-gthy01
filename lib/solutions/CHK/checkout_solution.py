@@ -139,22 +139,22 @@ class CheckoutSolution:
         total = 0
 
         if sku_id == "E":
-            deducted_sku = self.offers_for_n_skus_give_x_sku_free(sku_id, sku_quantity, sku_price)
+            deducted_sku = self.offer_for_free_skus(sku_quantity, )
             total += sku_price * sku_quantity
             pricing["B"][1] -= deducted_sku
 
         if sku_id == "F":
-            deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
+            deducted_sku = self.offer_for_free_skus(sku_id, sku_quantity, sku_price)
             pricing["F"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
         if sku_id == "N":
-            deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
+            deducted_sku = self.offer_for_free_skus(sku_id, sku_quantity, sku_price)
             pricing["M"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
         if sku_id == "U":
-            deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
+            deducted_sku = self.offer_for_free_skus(sku_id, sku_quantity, sku_price)
             pricing["U"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
@@ -210,21 +210,13 @@ class CheckoutSolution:
                 discount_amount=(90, 130),
             )
 
-    def offer_for_sku_give_n_sku_free(
+    def offer_for_free_skus(
         self,
-        sku_ids: tuple[str, str],
-        skus: dict[str, Any],
+        sku_count,
         offer: int
     ) -> int:
-        total = 0
 
-        sku_1 = skus[sku_ids[0]]
-        sku_1_price = sku_1[0]
-        sku_1_count = sku_1[1]
-
-        # Deductions
-        sku_deducted = sku_1_count // offer
-        return sku_deducted
+        return sku_count // offer
     
         # b_count = sku[1]
         # e_count = sku_E[1]
@@ -265,12 +257,3 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
-
-
-
-
-
-
-
-
-
