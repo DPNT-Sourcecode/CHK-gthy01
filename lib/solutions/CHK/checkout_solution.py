@@ -96,7 +96,7 @@ class CheckoutSolution:
 
         skus_on_direct_discount = ["A", "B", "H", "K", "P", "Q", "S", "T", "V", "X", "Y", "Z"]
 
-        pricing: dict[str, list[int, int]] = {
+        basket: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
             "C": [20, 0],
@@ -128,34 +128,39 @@ class CheckoutSolution:
         total_price = 0
         temp_price = 0
         for sku in skus:
-            if sku not in pricing:
+            if sku not in basket:
                 return -1  # Returning -1 as it's our base case
             if sku not in skus_on_offer:
-                total_price += pricing[sku][0]
-            pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
+                total_price += basket[sku][0]
+            basket[sku] = [basket[sku][0], 1 + basket[sku][1]]
 
-        total_price += self.buy_n_amount_and_get_free_skus(pricing)
+        total_price += self.buy_n_amount_and_get_free_skus(basket)
 
-        for sku_id, pricing_quantity in pricing.items():
+
+        combo_offer = ["S", "T", "X", "Y", "Z"]
+        for sku_id, pricing_quantity in basket.items():
             if (
                 sku_id in skus_on_direct_discount
                 and pricing_quantity[1] > 0
             ):
-                sku_price = pricing_quantity[0]
-                sku_quantity = pricing_quantity[1]
-                temp_price += self.offer_price_reduction(
-                    sku_id, sku_quantity, sku_price
-                )
+                if sku_id in combo_offer:
+                    if sku_id > 3:
+                else:
+                    sku_price = pricing_quantity[0]
+                    sku_quantity = pricing_quantity[1]
+                    temp_price += self.offer_price_reduction(
+                        sku_id, sku_quantity, sku_price
+                    )
 
             if sku_id == "M":
                 total_price += pricing_quantity[0] * pricing_quantity[1]
 
 
-        sku_S = pricing["S"][1]
-        sku_T = pricing["T"][1]
-        sku_X = pricing["X"][1]
-        sku_Y = pricing["Y"][1]
-        sku_Z = pricing["Z"][1]
+        sku_S = basket["S"][1]
+        sku_T = basket["T"][1]
+        sku_X = basket["X"][1]
+        sku_Y = basket["Y"][1]
+        sku_Z = basket["Z"][1]
 
         if :
             total_price += self.offer_for_sku_give_n_total(
@@ -169,48 +174,48 @@ class CheckoutSolution:
 
     def buy_n_amount_and_get_free_skus(
         self,
-        pricing: dict[str, list[int, int]],
+        basket: dict[str, list[int, int]],
     ) -> int:
         total_price = 0
-        if pricing["E"][1] > 0:
-            sku_price = pricing["E"][0]
-            sku_quantity = pricing["E"][1]
+        if basket["E"][1] > 0:
+            sku_price = basket["E"][0]
+            sku_quantity = basket["E"][1]
 
             deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
             total_price += sku_price * sku_quantity
-            if pricing["B"][1] > 0:
-                pricing["B"][1] -= deducted_sku
+            if basket["B"][1] > 0:
+                basket["B"][1] -= deducted_sku
 
-        if pricing["F"][1] > 0:
-            sku_price = pricing["F"][0]
-            sku_quantity = pricing["F"][1]
+        if basket["F"][1] > 0:
+            sku_price = basket["F"][0]
+            sku_quantity = basket["F"][1]
 
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
-            pricing["F"][1] -= deducted_sku
-            total_price += sku_price *  pricing["F"][1]
+            basket["F"][1] -= deducted_sku
+            total_price += sku_price *  basket["F"][1]
 
-        if pricing["N"][1] > 0:
-            sku_price = pricing["N"][0]
-            sku_quantity = pricing["N"][1]
+        if basket["N"][1] > 0:
+            sku_price = basket["N"][0]
+            sku_quantity = basket["N"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
-            if pricing["M"][1] > 0:
-                pricing["M"][1] -= deducted_sku
+            if basket["M"][1] > 0:
+                basket["M"][1] -= deducted_sku
             total_price += sku_price * sku_quantity
 
-        if pricing["R"][1] > 0:
-            sku_price = pricing["R"][0]
-            sku_quantity = pricing["R"][1]
+        if basket["R"][1] > 0:
+            sku_price = basket["R"][0]
+            sku_quantity = basket["R"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
-            if pricing["R"][1] > 0:
-                pricing["Q"][1] -= deducted_sku
+            if basket["R"][1] > 0:
+                basket["Q"][1] -= deducted_sku
             total_price += sku_price * sku_quantity
 
-        if pricing["U"][1] > 0:
-            sku_price = pricing["U"][0]
-            sku_quantity = pricing["U"][1]
+        if basket["U"][1] > 0:
+            sku_price = basket["U"][0]
+            sku_quantity = basket["U"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 4)
-            pricing["U"][1] -= deducted_sku
-            total_price += sku_price * pricing["U"][1]
+            basket["U"][1] -= deducted_sku
+            total_price += sku_price * basket["U"][1]
         return total_price
 
     def offer_price_reduction(
@@ -307,6 +312,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
