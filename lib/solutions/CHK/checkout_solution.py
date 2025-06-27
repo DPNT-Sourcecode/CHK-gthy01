@@ -196,12 +196,10 @@ class CheckoutSolution:
         self,
         sku_ids: tuple[str, str],
         skus: dict[str, Any],
-        price: int,
-        offer: int,
-        discount_amount: tuple[int, int],
+        offer: int
     ) -> int:
         # TODO: Build out inputs and pass down the actual individual dict
-        
+        breakpoint()
         sku_1 = skus[sku_ids[0]]
         sku_1_price = sku_1[0]
         sku_1_count = sku_1[1]
@@ -252,3 +250,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
