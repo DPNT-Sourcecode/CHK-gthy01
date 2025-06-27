@@ -79,9 +79,9 @@ class CheckoutSolution:
                 total_price += pricing[sku][0]
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
-        total_price += self.buy_n_amount_and_get_free_skus(pricing)
-        breakpoint()
         temp_price = 0
+        temp_price += self.buy_n_amount_and_get_free_skus(pricing)
+        breakpoint()
         for sku_id, pricing_quantity in pricing.items():
             if (
                 sku_id in ["A", "B", "H", "K", "P", "Q", "V"]
@@ -233,6 +233,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
