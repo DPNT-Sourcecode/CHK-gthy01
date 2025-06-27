@@ -90,7 +90,7 @@ class CheckoutSolution:
                 total_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
-
+            breakpoint()
             if sku_id in skus_without_offer and pricing_quantity[1] > 0:
                 temp_price += pricing_quantity[0]
         # breakpoint()
@@ -232,6 +232,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
