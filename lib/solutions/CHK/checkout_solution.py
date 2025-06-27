@@ -88,22 +88,7 @@ class CheckoutSolution:
             "U",
             "V",
         ]
-        skus_without_offer = [
-            "C",
-            "D",
-            "G",
-            "I",
-            "J",
-            "L",
-            "M",
-            "O",
-            "S",
-            "T",
-            "W",
-            "X",
-            "Y",
-        ]
-        
+
         pricing: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
@@ -115,7 +100,7 @@ class CheckoutSolution:
             "H": [10, 0],  # offer /
             "I": [35, 0],
             "J": [60, 0],
-            "K": [80, 0],  # offer /
+            "K": [70, 0],  # offer /
             "L": [90, 0],
             "M": [15, 0],
             "N": [40, 0],  # offer
@@ -123,14 +108,14 @@ class CheckoutSolution:
             "P": [50, 0],  # offer /
             "Q": [30, 0],  # offer /
             "R": [50, 0],  # offer
-            "S": [30, 0],
+            "S": [29, 0],
             "T": [20, 0],
             "U": [40, 0],  # offer
             "V": [50, 0],  # offer /
             "W": [20, 0],
-            "X": [90, 0],
-            "Y": [10, 0],
-            "Z": [50, 0],
+            "X": [17, 0],
+            "Y": [20, 0],
+            "Z": [21, 0],
         }
 
         total_price = 0
@@ -308,5 +293,6 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
