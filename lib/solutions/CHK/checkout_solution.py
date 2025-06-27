@@ -1,14 +1,36 @@
 class CheckoutSolution:
-    # +------+-------+------------------------+
-    # | Item | Price | Special offers         |
-    # +------+-------+------------------------+
-    # | A    | 50    | 3A for 130, 5A for 200 |
-    # | B    | 30    | 2B for 45              |
-    # | C    | 20    |                        |
-    # | D    | 15    |                        |
-    # | E    | 40    | 2E get one B free      |
-    # | F    | 10    | 2F get one F free      |
-    # +------+-------+------------------------+
+#  Our price table and offers:
+# +------+-------+------------------------+
+# | Item | Price | Special offers         |
+# +------+-------+------------------------+
+# | A    | 50    | 3A for 130, 5A for 200 |
+# | B    | 30    | 2B for 45              |
+# | C    | 20    |                        |
+# | D    | 15    |                        |
+# | E    | 40    | 2E get one B free      |
+# | F    | 10    | 2F get one F free      |
+# | G    | 20    |                        |
+# | H    | 10    | 5H for 45, 10H for 80  |
+# | I    | 35    |                        |
+# | J    | 60    |                        |
+# | K    | 80    | 2K for 150             |
+# | L    | 90    |                        |
+# | M    | 15    |                        |
+# | N    | 40    | 3N get one M free      |
+# | O    | 10    |                        |
+# | P    | 50    | 5P for 200             |
+# | Q    | 30    | 3Q for 80              |
+# | R    | 50    | 3R get one Q free      |
+# | S    | 30    |                        |
+# | T    | 20    |                        |
+# | U    | 40    | 3U get one U free      |
+# | V    | 50    | 2V for 90, 3V for 130  |
+# | W    | 20    |                        |
+# | X    | 90    |                        |
+# | Y    | 10    |                        |
+# | Z    | 50    |                        |
+# +------+-------+------------------------+
+
 
     # skus = unicode string
     def checkout(self, skus):
@@ -37,7 +59,8 @@ class CheckoutSolution:
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
         for sku_id, pricing_quantity in pricing.items():
-            total_price += self.offer_for_sku_give_n_total(sku_quantity=pricing_quantity[1], offer_quantity= )
+            if sku_id == "A":
+                total_price += self.offer_for_sku_give_n_total(sku_quantity=pricing_quantity[1], offer_quantity=(3, 5), discount_amount=(130, 200))
 
         # breakpoint()
         if pricing["A"][1] > 0:
@@ -100,5 +123,9 @@ class CheckoutSolution:
         f_count -= f_offer
         total = f_count * price
         return total
+
+
+    def offer_for_sku_give_n_total(self, sku_quantity: int, offer_quantity: tuple[int, int], discount_amount: tuple[int, int]) -> int:
+        return 0
 
 
