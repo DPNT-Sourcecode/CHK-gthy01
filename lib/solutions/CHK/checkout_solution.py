@@ -321,3 +321,13 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
+    def apply_combo_offer(
+        basket: dict[str, Any], 
+        combo_skus: list[str], 
+        offer_size: int
+        offer_price: int
+    ) -> int:
+
+        combo_skus_
+
