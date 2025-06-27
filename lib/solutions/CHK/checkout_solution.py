@@ -55,15 +55,15 @@ class CheckoutSolution:
     # | O    | 10    |                                 |
     # | P    | 50    | 5P for 200                      | x
     # | Q    | 30    | 3Q for 80                       | x
-    # | R    | 50    | 3R get one Q free               |
-    # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | U    | 40    | 3U get one U free               |
-    # | V    | 50    | 2V for 90, 3V for 130           |
+    # | R    | 50    | 3R get one Q free               | x
+    # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 | n
+    # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 | n
+    # | U    | 40    | 3U get one U free               | x
+    # | V    | 50    | 2V for 90, 3V for 130           | x
     # | W    | 20    |                                 |
-    # | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 | n
+    # | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 | n
+    # | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 | n
     # +------+-------+---------------------------------+
 
     def checkout(self, skus):
@@ -103,6 +103,7 @@ class CheckoutSolution:
             "X",
             "Y",
         ]
+        
         pricing: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
@@ -263,6 +264,15 @@ class CheckoutSolution:
             )
             return total
 
+        if sku_id in ["S", "T", "X", "Y", "Z"]:
+            total += self.offer_for_sku_give_n_total(
+                skus=sku_quantity,
+                price=sku_price,
+                offer=(3, 0),
+                discount_amount=(45, 0),
+            )
+            return total
+
         if sku_id == "V":
             total += self.offer_for_sku_give_n_total(
                 skus=sku_quantity,
@@ -298,4 +308,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
