@@ -94,6 +94,8 @@ class CheckoutSolution:
             "Z"
         ]
 
+        skus_on_direct_discount = ["A", "B", "H", "K", "P", "Q", "S", "T", "V", "X", "Y", "Z"]
+
         pricing: dict[str, list[int, int]] = {
             "A": [50, 0],  # offer /
             "B": [30, 0],  # offer /
@@ -136,7 +138,7 @@ class CheckoutSolution:
 
         for sku_id, pricing_quantity in pricing.items():
             if (
-                sku_id in ["A", "B", "H", "K", "P", "Q", "V"]
+                sku_id in skus_on_direct_discount
                 and pricing_quantity[1] > 0
             ):
                 sku_price = pricing_quantity[0]
@@ -298,6 +300,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
