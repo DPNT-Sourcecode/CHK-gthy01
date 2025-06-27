@@ -136,7 +136,10 @@ class CheckoutSolution:
         self, sku_id: str, sku_quantity: int, sku_price: int
     ) -> int:
         total = 0
-        total += self.offers_for_n_skus_give_x_sku_free(sku_id, sku_quantity, sku_price)
+
+        if sku_id == "E":
+            temp_total, deducted_sku = self.offers_for_n_skus_give_x_sku_free(sku_id, sku_quantity, sku_price)
+
         total += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
         return total
 
@@ -204,15 +207,11 @@ class CheckoutSolution:
         sku_1_price = sku_1[0]
         sku_1_count = sku_1[1]
 
-        sku_2 = skus[sku_ids[1]]
-        sku_2_count = sku_2[1]
-
         # Deductions
-        sku_groups = sku_1_count // offer
-        sku_2_deducted =  sku_2_count - sku_groups
+        sku_deducted = sku_1_count // offer
 
         total += sku_1_price * sku_1_count
-        return total, sku_2_deducted
+        return total, sku_deducted
     
         # b_count = sku[1]
         # e_count = sku_E[1]
@@ -253,6 +252,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
