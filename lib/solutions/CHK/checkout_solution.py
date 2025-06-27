@@ -162,7 +162,14 @@ class CheckoutSolution:
             if sku_id == "M":
                 total_price += pricing_quantity[0] * pricing_quantity[1]
 
-        for sku_id, price in 
+
+        group_counts = []
+        for sku_id in combo_offer:
+            sku = basket[sku_id]
+            group_counts.append(sku[1])
+
+
+
 
         if combo_count:
             total_price += self.offer_for_sku_give_n_total(
@@ -314,6 +321,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
