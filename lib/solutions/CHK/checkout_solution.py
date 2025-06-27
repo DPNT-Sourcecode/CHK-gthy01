@@ -78,7 +78,6 @@ class CheckoutSolution:
                 total_price += pricing[sku][0]
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
-        # breakpoint()
         total_price += self.buy_n_amount_and_get_free_skus(pricing)
 
         for sku_id, pricing_quantity in pricing.items():
@@ -90,34 +89,6 @@ class CheckoutSolution:
                 )
         return total_price
 
-        # def offer_check_B(
-        #     self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
-        # ) -> int:
-        #     b_count = sku_B[1]
-        #     e_count = sku_E[1]
-
-        #     e_offer = e_count // 2
-        #     b_count -= e_offer
-
-        #     total = 0
-        #     price = sku_B[0]
-
-        #     b_pair_count = b_count // 2
-        #     leftover_b = b_count % 2
-        #     total = b_pair_count * 45 + leftover_b * price
-        #     return total
-
-        # def offer_check_E(self, sku: tuple[int, int]) -> int:
-        #     return sku[1] * sku[0]
-
-        # def offer_check_F(self, sku: tuple[int, int]) -> int:
-        f_count = sku[1]
-        price = sku[0]
-
-        f_offer = f_count // 3
-        f_count -= f_offer
-        total = f_count * price
-        return total
 
     def buy_n_amount_and_get_free_skus(
         self,
@@ -239,6 +210,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
