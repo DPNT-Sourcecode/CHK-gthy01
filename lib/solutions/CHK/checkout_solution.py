@@ -88,8 +88,10 @@ class CheckoutSolution:
                 total_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
-            if sku not in skus_on_offer:
-                total_price += pricing[sku][0]
+            
+            if sku_id not in skus_on_offer:
+                breakpoint()
+                total_price += pricing_quantity[0]
 
         return total_price
 
@@ -230,5 +232,6 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
