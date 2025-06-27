@@ -64,7 +64,7 @@ class CheckoutSolution:
             if sku_id == "A":
                 total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(3, 5), discount_amount=(130, 200))
             if sku_id == "B":
-                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(3, 5), discount_amount=(130, 200))
+                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(2, 0), discount_amount=(45, 0))
 
         # breakpoint()
         # if pricing["A"][1] > 0:
@@ -133,9 +133,10 @@ class CheckoutSolution:
         total = 0
 
         # Apply 5 deal first
-        group_5 = skus // offer[1]
-        skus %= offer[1]
-        total += group_5 * discount_amount[1]
+        if offer[1] > 0:
+            group_5 = skus // offer[1]
+            skus %= offer[1]
+            total += group_5 * discount_amount[1]
 
         # Apply 3 deal afterwards
         group_3 = skus // offer[0]
@@ -145,3 +146,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
