@@ -61,10 +61,9 @@ class CheckoutSolution:
         # temp_price = 0
         for sku_id, pricing_quantity in pricing.items():
             # breakpoint()
-            if sku_id == "A":
-                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(3, 5), discount_amount=(130, 200))
-            if sku_id == "B":
-                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(2, 0), discount_amount=(45, 0))
+            # TODO: Frontload any for n skus give x skus free before total discounts 
+
+          
 
         # breakpoint()
         # if pricing["A"][1] > 0:
@@ -128,7 +127,11 @@ class CheckoutSolution:
         total = f_count * price
         return total
 
-
+    def translate_skus_to_offers(self, sku_id: str, ):
+        if sku_id == "A":
+            total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(3, 5), discount_amount=(130, 200))
+        if sku_id == "B":
+            total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(2, 0), discount_amount=(45, 0))    
     def offer_for_sku_give_n_total(self, skus: int, price: int, offer: tuple[int, int], discount_amount: tuple[int, int]) -> int:
         total = 0
 
@@ -146,4 +149,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
