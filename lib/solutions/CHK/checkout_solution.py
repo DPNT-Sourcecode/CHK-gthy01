@@ -78,6 +78,8 @@ class CheckoutSolution:
             if sku not in pricing:
                 return -1  # Returning -1 as it's our base case
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
+        breakpoint()
+
         total_price += self.buy_n_amount_and_get_free_skus(pricing)
 
         for sku_id, pricing_quantity in pricing.items():
@@ -230,3 +232,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
