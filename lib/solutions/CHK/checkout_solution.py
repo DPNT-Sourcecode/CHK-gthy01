@@ -57,7 +57,18 @@ class CheckoutSolution:
             "L": [90, 0],
             "M": [15, 0],
             "N": [40, 0],
-            "N": [40, 0],
+            "O": [10, 0],
+            "P": [50, 0],
+            "Q": [30, 0],
+            "R": [50, 0],
+            "S": [30, 0],
+            "T": [20, 0],
+            "U": [40, 0],
+            "V": [50, 0],
+            "W": [20, 0],
+            "X": [90, 0],
+            "Y": [10, 0],
+            "Z": [50, 0],
         }
         total_price = 0
         for sku in skus:
@@ -207,8 +218,8 @@ class CheckoutSolution:
         self,
         skus: int,
         price: int,
-        offer: tuple[int, int],
-        discount_amount: tuple[int, int],
+        offer: list[int, int],
+        discount_amount: list[int, int],
     ) -> int:
         total = 0
 
@@ -226,6 +237,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
