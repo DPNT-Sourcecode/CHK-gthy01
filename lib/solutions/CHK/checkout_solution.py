@@ -77,6 +77,7 @@ class CheckoutSolution:
                 return -1  # Returning -1 as it's our base case
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
         total_price += self.buy_n_amount_and_get_free_skus(pricing)
+
         for sku_id, pricing_quantity in pricing.items():
             if (
                 sku_id in ["A", "B", "H", "K", "P", "Q", "V"]
@@ -90,7 +91,7 @@ class CheckoutSolution:
 
             if sku_id not in skus_on_offer and pricing_quantity[1] > 0:
                 total_price += pricing_quantity[0]
-
+        breakpoint()
         return total_price
 
     def buy_n_amount_and_get_free_skus(
@@ -102,7 +103,7 @@ class CheckoutSolution:
             sku_price = pricing["E"][0]
             sku_quantity = pricing["E"][1]
 
-            deducted_sku = self.offer_for_free_skus(pricing["E"][1], 2)
+            deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
             total_price += sku_price * sku_quantity
             pricing["B"][1] -= deducted_sku
 
@@ -229,6 +230,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
