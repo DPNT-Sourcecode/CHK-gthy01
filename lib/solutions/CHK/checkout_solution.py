@@ -79,6 +79,50 @@ class CheckoutSolution:
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
 
+        
+        for sku_id, pricing_quantity in pricing.items():
+            if sku_id in ["A", "B", "H", "P", "Q", "V"]:
+                sku_price = (pricing_quantity[0],)
+                sku_quantity = (pricing_quantity[1],)
+                total_price += self.buy_n_amount_and_get_free_skus(
+                    sku_id, sku_quantity, sku_price
+                )
+        return total_price
+
+        # def offer_check_B(
+        #     self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
+        # ) -> int:
+        #     b_count = sku_B[1]
+        #     e_count = sku_E[1]
+
+        #     e_offer = e_count // 2
+        #     b_count -= e_offer
+
+        #     total = 0
+        #     price = sku_B[0]
+
+        #     b_pair_count = b_count // 2
+        #     leftover_b = b_count % 2
+        #     total = b_pair_count * 45 + leftover_b * price
+        #     return total
+
+        # def offer_check_E(self, sku: tuple[int, int]) -> int:
+        #     return sku[1] * sku[0]
+
+        # def offer_check_F(self, sku: tuple[int, int]) -> int:
+        f_count = sku[1]
+        price = sku[0]
+
+        f_offer = f_count // 3
+        f_count -= f_offer
+        total = f_count * price
+        return total
+
+    def buy_n_amount_and_get_free_skus(
+        self,
+        pricing: dict[str, list[int, int]],
+        total_price: int
+    ) -> int:
         if pricing["E"][1] > 0:
             sku_price = pricing["E"][0]
             sku_quantity = pricing["E"][1]
@@ -116,51 +160,9 @@ class CheckoutSolution:
             pricing["U"][1] -= deducted_sku
             total_price += sku_price * sku_quantity
 
-        for sku_id, pricing_quantity in pricing.items():
-            if sku_id in ["A", "B", "H", "P", "Q", "V"]:
-                sku_price = (pricing_quantity[0],)
-                sku_quantity = (pricing_quantity[1],)
-                total_price += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
         return total_price
 
-    def offer_check_B(
-        self, sku_B: tuple[int, int], sku_E: tuple[int, int] = (40, 0)
-    ) -> int:
-        b_count = sku_B[1]
-        e_count = sku_E[1]
-
-        e_offer = e_count // 2
-        b_count -= e_offer
-
-        total = 0
-        price = sku_B[0]
-
-        b_pair_count = b_count // 2
-        leftover_b = b_count % 2
-        total = b_pair_count * 45 + leftover_b * price
-        return total
-
-    def offer_check_E(self, sku: tuple[int, int]) -> int:
-        return sku[1] * sku[0]
-
-    def offer_check_F(self, sku: tuple[int, int]) -> int:
-        f_count = sku[1]
-        price = sku[0]
-
-        f_offer = f_count // 3
-        f_count -= f_offer
-        total = f_count * price
-        return total
-
-    def translate_skus_to_offers(
-        self,
-        sku_id: str,
-        sku_quantity: int,
-        sku_price: int,
-    ) -> int:
-        return 
-
-    def offers_for_skus_give_n_total(
+    def buy_n_amount_and_get_free_skus(
         self, sku_id: str, sku_quantity: int, sku_price: int
     ) -> int:
         if sku_id == "A":
@@ -237,6 +239,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
