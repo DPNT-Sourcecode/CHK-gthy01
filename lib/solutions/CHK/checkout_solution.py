@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class CheckoutSolution:
     #  Our price table and offers:
     # +------+-------+------------------------+
@@ -189,6 +192,32 @@ class CheckoutSolution:
                 discount_amount=(90, 130),
             )
 
+    def offer_for_sku_give_n_sku_free(
+        self,
+        skus: dict[str, Any],
+        price: int,
+        offer: tuple[int, int],
+        discount_amount: tuple[int, int],
+    ) -> int:
+        # TODO: Build out inputs and 
+
+        return 0
+        # b_count = sku[1]
+        # e_count = sku_E[1]
+
+        # # Calculate E offer and remove Bs from total before calculating
+        # e_offer = e_count // 2
+        # b_count -= e_offer
+
+        # total = 0
+        # price = sku_B[0]
+
+        # b_pair_count = b_count // 2
+        # leftover_b = b_count % 2
+        # total = b_pair_count * 45 + leftover_b * price
+        # return total
+
+
     def offer_for_sku_give_n_total(
         self,
         skus: int,
@@ -212,6 +241,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
