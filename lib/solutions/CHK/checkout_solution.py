@@ -36,8 +36,8 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
-
-        
+        for sku_id, pricing_quantity in pricing.items():
+            total_price += self.offer_for_sku_give_n_total(sku_quantity=pricing_quantity[1], offer_quantity= )
 
         # breakpoint()
         if pricing["A"][1] > 0:
@@ -100,4 +100,5 @@ class CheckoutSolution:
         f_count -= f_offer
         total = f_count * price
         return total
+
 
