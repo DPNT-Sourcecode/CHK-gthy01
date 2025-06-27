@@ -147,7 +147,6 @@ class CheckoutSolution:
             if sku not in skus_on_offer:
                 total_price += basket[sku][0]
             basket[sku] = [basket[sku][0], 1 + basket[sku][1]]
-            # basket[sku] += 1
 
         total_price += self.buy_n_amount_and_get_free_skus(basket)
         total_price += self.apply_combo_offer(basket, combo_offer, 3, 45)
@@ -332,8 +331,11 @@ class CheckoutSolution:
 
             i += offer_size
 
-        breakpoint()
+        for sku in combo_skus_in_basket[i:]:
+            total_price += basket[sku][0]
+            basket[sku][1] -= 1
         return total_price
+
 
 
 
