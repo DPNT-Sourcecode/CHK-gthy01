@@ -194,14 +194,24 @@ class CheckoutSolution:
 
     def offer_for_sku_give_n_sku_free(
         self,
-        sku_ids
+        sku_ids: tuple[str, str],
         skus: dict[str, Any],
         price: int,
         offer: tuple[int, int],
         discount_amount: tuple[int, int],
     ) -> int:
         # TODO: Build out inputs and pass down the actual individual dict
-        sku_1 = skus[]
+        
+        sku_1 = skus[sku_ids[0]]
+        sku_1_price = sku_1[0]
+        sku_1_count = sku_1[1]
+        
+        
+        sku_2 = sku_ids[sku_ids[1]]
+        sku_2_price = sku_2[0]
+        sku_2_count = sku_2[1]
+
+        breakpoint()
         return 0
         # b_count = sku[1]
         # e_count = sku_E[1]
@@ -242,6 +252,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
