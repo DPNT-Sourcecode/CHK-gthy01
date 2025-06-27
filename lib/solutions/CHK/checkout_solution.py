@@ -139,20 +139,27 @@ class CheckoutSolution:
         total = 0
 
         if sku_id == "E":
-            temp_total, deducted_sku = self.offers_for_n_skus_give_x_sku_free(sku_id, sku_quantity, sku_price)
-            total += temp_total
+            deducted_sku = self.offers_for_n_skus_give_x_sku_free(sku_id, sku_quantity, sku_price)
+            total += sku_price * sku_quantity
             pricing["B"][1] -= deducted_sku
-        
+
         if sku_id == "F":
-            temp_total, deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
-            pricing["B"][1] -= deducted_sku
-            total += temp_total
+            deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
+            pricing["F"][1] -= deducted_sku
+            total += sku_price * sku_quantity
+
+        if sku_id == "N":
+            deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
+            pricing["M"][1] -= deducted_sku
+            total += sku_price * sku_quantity
+
+        if sku_id == "U":
+            deducted_sku = self.offer_for_sku_give_n_sku_free(sku_id, sku_quantity, sku_price)
+            pricing["U"][1] -= deducted_sku
+            total += sku_price * sku_quantity
 
         total += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
         return total
-
-    def offers_for_n_skus_give_x_sku_free(self, sku_id: str, sku_quantity: int, sku_price:int) -> int:
-        return 0
 
     def offers_for_skus_give_n_total(self, sku_id: str, sku_quantity: int, sku_price: int) -> int:
         if sku_id == "A":
@@ -208,7 +215,7 @@ class CheckoutSolution:
         sku_ids: tuple[str, str],
         skus: dict[str, Any],
         offer: int
-    ) -> tuple[int, int]:
+    ) -> int:
         total = 0
 
         sku_1 = skus[sku_ids[0]]
@@ -217,7 +224,7 @@ class CheckoutSolution:
 
         # Deductions
         sku_deducted = sku_1_count // offer
-        return total, sku_deducted
+        return sku_deducted
     
         # b_count = sku[1]
         # e_count = sku_E[1]
@@ -258,6 +265,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
