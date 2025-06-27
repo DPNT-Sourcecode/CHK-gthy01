@@ -79,12 +79,13 @@ class CheckoutSolution:
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
 
-        
+        total_price += self.buy_n_amount_and_get_free_skus(pricing, total_price)
+
         for sku_id, pricing_quantity in pricing.items():
             if sku_id in ["A", "B", "H", "P", "Q", "V"]:
-                sku_price = (pricing_quantity[0],)
-                sku_quantity = (pricing_quantity[1],)
-                total_price += self.buy_n_amount_and_get_free_skus(
+                sku_price = pricing_quantity[0]
+                sku_quantity = pricing_quantity[1]
+                total_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
         return total_price
@@ -162,7 +163,7 @@ class CheckoutSolution:
 
         return total_price
 
-    def buy_n_amount_and_get_free_skus(
+    def offer_price_reduction(
         self, sku_id: str, sku_quantity: int, sku_price: int
     ) -> int:
         if sku_id == "A":
@@ -239,6 +240,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
