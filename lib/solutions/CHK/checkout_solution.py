@@ -115,7 +115,7 @@ class CheckoutSolution:
             "P": [50, 0],  # offer /
             "Q": [30, 0],  # offer /
             "R": [50, 0],  # offer
-            "S": [29, 0],
+            "S": [20, 0],
             "T": [20, 0],
             "U": [40, 0],  # offer
             "V": [50, 0],  # offer /
@@ -300,8 +300,3 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
-
-
-
-
-
