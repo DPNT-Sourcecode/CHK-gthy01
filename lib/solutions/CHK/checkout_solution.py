@@ -78,9 +78,9 @@ class CheckoutSolution:
                 total_price += pricing[sku][0]
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
-
         breakpoint()
-        total_price += self.buy_n_amount_and_get_free_skus(pricing, total_price)
+        total_price += self.buy_n_amount_and_get_free_skus(pricing)
+
         for sku_id, pricing_quantity in pricing.items():
             if sku_id in ["A", "B", "H", "P", "Q", "V"]:
                 sku_price = pricing_quantity[0]
@@ -88,7 +88,6 @@ class CheckoutSolution:
                 total_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
-        breakpoint()
         return total_price
 
         # def offer_check_B(
@@ -123,8 +122,8 @@ class CheckoutSolution:
     def buy_n_amount_and_get_free_skus(
         self,
         pricing: dict[str, list[int, int]],
-        total_price: int
     ) -> int:
+        total_price = 0
         if pricing["E"][1] > 0:
             sku_price = pricing["E"][0]
             sku_quantity = pricing["E"][1]
@@ -132,6 +131,7 @@ class CheckoutSolution:
             deducted_sku = self.offer_for_free_skus(pricing["E"][1], 2)
             total_price += sku_price * sku_quantity
             pricing["B"][1] -= deducted_sku
+            breakpoint()
 
         if pricing["F"][1] > 0:
             sku_price = pricing["F"][0]
@@ -161,7 +161,6 @@ class CheckoutSolution:
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
             pricing["U"][1] -= deducted_sku
             total_price += sku_price * sku_quantity
-
         return total_price
 
     def offer_price_reduction(
@@ -241,3 +240,4 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
