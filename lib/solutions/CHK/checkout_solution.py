@@ -209,10 +209,10 @@ class CheckoutSolution:
         sku_2 = skus[sku_ids[1]]
         sku_2_price = sku_2[0]
         sku_2_count = sku_2[1]
+        
 
 
-
-        total += (sku_1_price * sku_1_price)
+        total += sku_1_price * sku_1_count
         breakpoint()
         return total
         # b_count = sku[1]
@@ -254,5 +254,6 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
