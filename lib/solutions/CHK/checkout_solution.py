@@ -62,7 +62,9 @@ class CheckoutSolution:
         for sku_id, pricing_quantity in pricing.items():
             # breakpoint()
             if sku_id == "A":
-                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], offer=(3, 5), discount_amount=(130, 200))
+                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(3, 5), discount_amount=(130, 200))
+            if sku_id == "B":
+                total_price += self.offer_for_sku_give_n_total(skus=pricing_quantity[1], price=pricing_quantity[0] ,offer=(3, 5), discount_amount=(130, 200))
 
         # breakpoint()
         # if pricing["A"][1] > 0:
