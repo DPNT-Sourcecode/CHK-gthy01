@@ -321,21 +321,20 @@ class CheckoutSolution:
             _, quantity = basket.get(sku, (0, 0))
             combo_skus_in_basket.extend([sku] * quantity)
         combo_skus_in_basket.sort(key=lambda sku: basket[sku][0], reverse=True)
-        
-        
-        breakpoint()
+
         total_price = 0
         i = 0
         while i + offer_size <= len(combo_skus_in_basket):
             group = combo_skus_in_basket[i : i + offer_size]
             total_price += offer_price
-            breakpoint()
             for sku in group:
                 basket[sku][1] -= 1
 
             i += offer_size
-            breakpoint()
+
+        breakpoint()
         return total_price
+
 
 
 
