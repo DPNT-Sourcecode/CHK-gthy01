@@ -79,9 +79,7 @@ class CheckoutSolution:
                 total_price += pricing[sku][0]
 
             pricing[sku] = [pricing[sku][0], 1 + pricing[sku][1]]
-        temp_price = 0
-        temp_price += self.buy_n_amount_and_get_free_skus(pricing)
-        breakpoint()
+        total_price += self.buy_n_amount_and_get_free_skus(pricing)
         for sku_id, pricing_quantity in pricing.items():
             if (
                 sku_id in ["A", "B", "H", "K", "P", "Q", "V"]
@@ -89,12 +87,10 @@ class CheckoutSolution:
             ):
                 sku_price = pricing_quantity[0]
                 sku_quantity = pricing_quantity[1]
-                temp_price += self.offer_price_reduction(
+                total_price += self.offer_price_reduction(
                     sku_id, sku_quantity, sku_price
                 )
-                breakpoint()
-        breakpoint()
-        return total_price + temp_price
+        return total_price
 
     def buy_n_amount_and_get_free_skus(
         self,
@@ -117,21 +113,21 @@ class CheckoutSolution:
             pricing["F"][1] -= deducted_sku
             total_price += sku_price * sku_quantity  # Check here
 
-        if pricing["N"][1] > 1:
+        if pricing["N"][1] > 0:
             sku_price = pricing["N"][0]
             sku_quantity = pricing["N"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
             pricing["M"][1] -= deducted_sku
             total_price += sku_price * sku_quantity
 
-        if pricing["R"][1] > 1:
+        if pricing["R"][1] > 0:
             sku_price = pricing["R"][0]
             sku_quantity = pricing["R"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
             pricing["Q"][1] -= deducted_sku
             total_price += sku_price * sku_quantity
 
-        if pricing["U"][1] > 1:
+        if pricing["U"][1] > 0:
             sku_price = pricing["U"][0]
             sku_quantity = pricing["U"][1]
             deducted_sku = self.offer_for_free_skus(sku_quantity, 3)
@@ -233,6 +229,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
