@@ -128,7 +128,18 @@ class CheckoutSolution:
 
 
     def offer_for_sku_give_n_total(self, sku_quantity: int, sku_price: int, offer_quantity: tuple[int, int], discount_amount: tuple[int, int]) -> int:
-        breakpoint()
+        total = 0
+        
+        for offer in offer_quantity:
+        freq = sku[1]
+
+        # Apply 5 deal first
+        group_5 = freq // 5
+        freq %= 5
+        total += group_5 * 200
+        
+        total += freq * price
+
         return 0
 
 
