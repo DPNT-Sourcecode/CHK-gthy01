@@ -58,10 +58,11 @@ class CheckoutSolution:
 
             pricing[sku] = (pricing[sku][0], 1 + pricing[sku][1])
 
+        temp_price = 0
         for sku_id, pricing_quantity in pricing.items():
             breakpoint()
             if sku_id == "A":
-                total_price += self.offer_for_sku_give_n_total(sku_quantity=pricing_quantity[1], offer_quantity=(3, 5), discount_amount=(130, 200))
+                temp_price += self.offer_for_sku_give_n_total(sku_quantity=pricing_quantity[1], offer_quantity=(3, 5), discount_amount=(130, 200))
 
         # breakpoint()
         if pricing["A"][1] > 0:
@@ -129,5 +130,6 @@ class CheckoutSolution:
     def offer_for_sku_give_n_total(self, sku_quantity: int, sku_price: int, offer_quantity: tuple[int, int], discount_amount: tuple[int, int]) -> int:
         breakpoint()
         return 0
+
 
 
