@@ -199,7 +199,7 @@ class CheckoutSolution:
         offer: tuple[int, int],
         discount_amount: tuple[int, int],
     ) -> int:
-        # TODO: Build out inputs and 
+        # TODO: Build out inputs and pass down the actual individual dict
 
         return 0
         # b_count = sku[1]
@@ -241,6 +241,7 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
 
 
