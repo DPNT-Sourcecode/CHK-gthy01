@@ -43,13 +43,13 @@ class CheckoutSolution:
         if skus == "":
             return 0
         skus_on_offer = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
-        pricing: dict[str, tuple[int, int]] = {
-            "A": (50, 0),
-            "B": (30, 0),
-            "C": (20, 0),
-            "D": (15, 0),
-            "E": (40, 0),
-            "F": (10, 0),
+        pricing: dict[str, list[int, int]] = {
+            "A": [50, 0],
+            "B": [30, 0],
+            "C": [20, 0],
+            "D": [15, 0],
+            "E": [40, 0],
+            "F": [10, 0],
         }
         total_price = 0
         for sku in skus:
@@ -142,7 +142,7 @@ class CheckoutSolution:
         if sku_id == "E":
             deducted_sku = self.offer_for_free_skus(sku_quantity, 2)
             total += sku_price * sku_quantity
-            breakpoint()
+            # breakpoint()
             pricing["B"][1] -= deducted_sku
 
         if sku_id == "F":
@@ -165,7 +165,7 @@ class CheckoutSolution:
             pricing["U"][1] -= deducted_sku
             total += sku_price * sku_quantity
 
-        # breakpoint()
+        breakpoint()
         total += self.offers_for_skus_give_n_total(sku_id, sku_quantity, sku_price)
         return total
 
@@ -262,6 +262,7 @@ class CheckoutSolution:
 # leftover_b = b_count % 2
 # total = b_pair_count * 45 + leftover_b * price
 # return total
+
 
 
 
