@@ -150,6 +150,19 @@ class CheckoutSolution:
             if sku_id == "M":
                 total_price += pricing_quantity[0] * pricing_quantity[1]
 
+
+        SKU_S = pricing["S"][1]
+        SKU_T = pricing["T"][1]
+        SKU_S = pricing["S"][1]
+        SKU_S = pricing["S"][1]
+        if sku_id in ["S", "T", "X", "Y", "Z"]:
+            total_price += self.offer_for_sku_give_n_total(
+                skus=sku_quantity,
+                price=sku_price,
+                offer=(3, 0),
+                discount_amount=(45, 0),
+            )
+
         return total_price + temp_price
 
     def buy_n_amount_and_get_free_skus(
@@ -256,14 +269,6 @@ class CheckoutSolution:
             )
             return total
 
-        if sku_id in ["S", "T", "X", "Y", "Z"]:
-            total += self.offer_for_sku_give_n_total(
-                skus=sku_quantity,
-                price=sku_price,
-                offer=(3, 0),
-                discount_amount=(45, 0),
-            )
-            return total
 
         if sku_id == "V":
             total += self.offer_for_sku_give_n_total(
@@ -300,4 +305,5 @@ class CheckoutSolution:
         # Add the remainder to the total pricing
         total += skus * price
         return total
+
 
